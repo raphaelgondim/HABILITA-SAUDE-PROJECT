@@ -1,58 +1,108 @@
-let cursos = JSON.parse(localStorage.getItem("cursos")) || [];
+function renderizarCursosDashboard() {
+  if (cursos.length === 0) {
 
-function atualizarMetricas() {
-  const totalCursos = cursos.length;
+  tabela.innerHTML = `
+    <tr>
+      <td colspan="3">
+        Nenhum curso encontrado
+      </td>
+    </tr>
+  `;
 
-  const totalAlunos = cursos.reduce((total, curso) => total + curso.alunos, 0);
+  return;
+}
+  const lista = document.getElementById("listaCursosDashboard");
 
-  const receitaTotal = cursos.reduce((total, curso) => total + curso.preco, 0);
+  lista.innerHTML = "";
 
-  const publicados = cursos.filter(
-    (curso) => curso.status === "Publicado",
-  ).length;
+  cursos
+    .filter((c) => c.status === "Publicado")
+    .slice(0, 5)
+    .forEach((curso) => {
+      lista.innerHTML += `
+        <div class="curso">
 
-  document.getElementById("totalCursos").textContent = totalCursos;
+          <img src="${curso.imagem}">
 
-  document.getElementById("totalAlunos").textContent = totalAlunos;
+          <div>
+            <h4>${curso.nome}</h4>
+            <p>${curso.alunos} alunos</p>
+          </div>
 
-  document.getElementById("receitaTotal").textContent =
-    receitaTotal.toLocaleString("pt-BR", {
-      style: "currency",
-      currency: "BRL",
+          <strong>${curso.vendas}</strong>
+
+          <div class="status"></div>
+
+        </div>
+      `;
     });
+}
+function renderizarMaisVendidos() {
+  if (cursos.length === 0) {
 
-  document.getElementById("cursosPublicados").textContent = publicados;
+  tabela.innerHTML = `
+    <tr>
+      <td colspan="3">
+        Nenhum curso encontrado
+      </td>
+    </tr>
+  `;
+
+  return;
+}
+  const tabela = document.getElementById("rankingVendas");
+
+  tabela.innerHTML = "";
+
+  const ranking = [...cursos].sort((a, b) => b.vendas - a.vendas).slice(0, 3);
+
+  ranking.forEach((curso, index) => {
+    tabela.innerHTML += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${curso.nome}</td>
+          <td>${curso.vendas}</td>
+        </tr>
+      `;
+  });
+}
+
+function renderizarAvaliacoes() {
+  if (cursos.length === 0) {
+
+  tabela.innerHTML = `
+    <tr>
+      <td colspan="3">
+        Nenhum curso encontrado
+      </td>
+    </tr>
+  `;
+
+  return;
+}
+  const tabela = document.getElementById("rankingAvaliacoes");
+
+  tabela.innerHTML = "";
+
+  const ranking = [...cursos]
+    .sort((a, b) => (b.avaliacao || 0) - (a.avaliacao || 0))
+    .slice(0, 3);
+
+  ranking.forEach((curso, index) => {
+    tabela.innerHTML += `
+        <tr>
+          <td>${index + 1}</td>
+          <td>${curso.nome}</td>
+<td>⭐ ${curso.avaliacao || 0}
+</td>        </tr>
+      `;
+  });
 }
 
 atualizarMetricas();
-const ctx = document.getElementById("graficoVendas");
 
-if (ctx && cursos.length > 0) {
-  new Chart(ctx, {
-    type: "bar",
+renderizarCursosDashboard();
 
-    data: {
-      labels: cursos.map((curso) => curso.nome),
+renderizarMaisVendidos();
 
-      datasets: [
-        {
-          label: "Vendas",
-
-          data: cursos.map((curso) => curso.vendas),
-
-          borderWidth: 1,
-        },
-      ],
-    },
-
-    options: {
-      responsive: true,
-
-      plugins: {
-        legend: {
-          display: true,
-        },
-      },
-    },
-  });
-}
+renderizarAvaliacoes();

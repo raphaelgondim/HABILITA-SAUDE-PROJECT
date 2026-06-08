@@ -137,57 +137,14 @@
               <input type="text" placeholder="Buscar cursos..." />
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
-            <div class="curso">
-              <img src="/img/nutrição.png" />
-
-              <div>
-                <h4>Nutrição</h4>
-
-                <p>342 alunos</p>
-              </div>
-
-              <strong>186</strong>
-              <div class="status"></div>
-            </div>
-
-            <div class="curso">
-              <img src="./img/saudemental.png" />
-
-              <div>
-                <h4>Saúde Mental</h4>
-
-                <p>287 alunos</p>
-              </div>
-
-              <strong>123</strong>
-              <div class="status"></div>
-            </div>
-            <div class="curso">
-              <img src="/img/enfermagem.png" />
-
-              <div>
-                <h4>Enfermagem Básica</h4>
-
-                <p>98 alunos</p>
-              </div>
-
-              <strong>123</strong>
-              <div class="status"></div>
-            </div>
+            <div id="listaCursosDashboard"></div>
           </div>
 
           <div class="card">
             <h3>Evolução De Matrícula</h3>
 
             <div class="grafico">
-              <svg viewBox="0 0 300 200">
-                <polyline
-                  fill="none"
-                  stroke="#3b82f6"
-                  stroke-width="4"
-                  points="20,150 80,120 140,100 200,50 260,30"
-                />
-              </svg>
+              <canvas id="graficoVendas"></canvas>
             </div>
           </div>
 
@@ -211,25 +168,8 @@
         <section class="bottom-cards">
           <div class="ranking-card">
             <h3>CURSOS MAIS VENDIDOS</h3>
-
             <table>
-              <tr>
-                <td>1.</td>
-                <td>Nutrição</td>
-                <td>186 Vendas</td>
-              </tr>
-
-              <tr>
-                <td>2.</td>
-                <td>Saúde Mental</td>
-                <td>123 Vendas</td>
-              </tr>
-
-              <tr>
-                <td>3.</td>
-                <td>Emergência</td>
-                <td>83 Vendas</td>
-              </tr>
+              <tbody id="rankingVendas"></tbody>
             </table>
           </div>
 
@@ -237,26 +177,11 @@
             <h3>CURSOS MAIS BEM AVALIADOS</h3>
 
             <table>
-              <tr>
-                <td>1.</td>
-                <td>Nutrição</td>
-                <td>⭐ 4.6</td>
-              </tr>
-
-              <tr>
-                <td>2.</td>
-                <td>Saúde Mental</td>
-                <td>⭐ 3.2</td>
-              </tr>
-
-              <tr>
-                <td>3.</td>
-                <td>Emergência</td>
-                <td>⭐ 3.1</td>
-              </tr>
+              <tbody id="rankingAvaliacoes"></tbody>
             </table>
           </div>
         </section>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="dashboard.js"></script>
       </main>
     </div>
