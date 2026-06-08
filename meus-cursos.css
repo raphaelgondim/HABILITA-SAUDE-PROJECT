@@ -1,0 +1,411 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: #f5f7fb;
+  color: #1b2559;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+  width: 300px;
+  background: linear-gradient(to bottom, #163b97, #2249ad);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo-side h2 {
+  font-size: 28px;
+}
+
+.logo-side p {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.sidebar li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  font-weight: bold;
+}
+
+.sidebar li:hover,
+.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.perfil {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px;
+
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.perfil img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main {
+  flex: 1;
+  padding: 40px;
+}
+
+/* =========================
+   TOPO
+========================= */
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  margin-bottom: 30px;
+}
+
+.topbar h1 {
+  font-size: 64px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.topbar p {
+  color: #6b7280;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.user-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  background: white;
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.user-top img {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+}
+
+/* =========================
+   FILTROS
+========================= */
+
+.filtros {
+  display: flex;
+  gap: 16px;
+
+  margin-bottom: 30px;
+}
+
+.filtros input,
+.filtros select {
+  height: 52px;
+
+  border: 1px solid #dce3ef;
+
+  border-radius: 14px;
+
+  padding: 0 18px;
+
+  background: white;
+}
+
+.filtros input {
+  width: 320px;
+}
+
+/* =========================
+   GRID
+========================= */
+
+.cursos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 25px;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.curso-card {
+  background: white;
+
+  border-radius: 24px;
+
+  overflow: hidden;
+
+  border: 1px solid #edf1f7;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+
+  transition: 0.3s;
+}
+
+.curso-card:hover {
+  transform: translateY(-5px);
+}
+
+.curso-top {
+  position: relative;
+}
+
+.curso-top img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+.tags {
+  position: absolute;
+
+  top: 15px;
+  left: 15px;
+
+  display: flex;
+  gap: 8px;
+
+  z-index: 2;
+}
+
+.tag,
+.status {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.platinum {
+  background: #dbe7ff;
+  color: #2850c6;
+}
+
+.silver {
+  background: #ececec;
+  color: #666;
+}
+
+.gold {
+  background: #fff2c7;
+  color: #c28a00;
+}
+
+.status {
+  background: #22c55e;
+  color: white;
+}
+
+.curso-content {
+  padding: 25px;
+}
+
+.curso-content h3 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.curso-content p {
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+/* =========================
+   INFO
+========================= */
+
+.curso-info {
+  margin: 0 20px 20px;
+
+  background: linear-gradient(135deg, #163b97, #2d63ff);
+
+  color: white;
+
+  border-radius: 18px;
+
+  padding: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.curso-info strong {
+  font-size: 22px;
+}
+
+.curso-info span {
+  font-size: 13px;
+}
+
+/* =========================
+   BOTÕES
+========================= */
+
+.acoes {
+  display: flex;
+  gap: 12px;
+
+  padding: 0 20px 20px;
+}
+
+.acoes button {
+  flex: 1;
+
+  height: 48px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  cursor: pointer;
+
+  font-weight: 600;
+}
+
+.acoes button:first-child {
+  background: #163b97;
+  color: white;
+}
+
+.acoes button:nth-child(2) {
+  background: #edf2ff;
+  color: #163b97;
+}
+
+.feedback-btn {
+  background: #f5f6fa;
+}
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 1300px) {
+  .cursos-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    display: none;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .topbar h1 {
+    font-size: 42px;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  .filtros input,
+  .filtros select {
+    width: 100%;
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+}
+
+.modal.show {
+  display: flex;
+}
+
+.modal-content {
+  width: 600px;
+  max-width: 90%;
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  position: relative;
+}
+
+#fechar {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  border: none;
+  background: none;
+
+  font-size: 30px;
+  cursor: pointer;
+}

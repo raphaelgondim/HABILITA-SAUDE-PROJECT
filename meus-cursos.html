@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meus Cursos</title>
+
+    <link rel="stylesheet" href="meus-cursos.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <div>
+          <div class="logo-side">
+            <h2>HABILITA.SAÚDE</h2>
+            <p>Plataforma de Cursos em Saúde</p>
+          </div>
+
+          <ul>
+            <li>
+              <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Início
+              </a>
+            </li>
+
+            <li class="active">
+              <a href="#">
+                <i class="fa-solid fa-book"></i>
+                Meus Cursos
+              </a>
+            </li>
+
+            <li>
+              <a href="financas.html">
+                <i class="fa-solid fa-chart-pie"></i>
+                Finanças
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <i class="fa-solid fa-plus"></i>
+                Criar Curso
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <i class="fa-solid fa-users"></i>
+                Usuários
+              </a>
+            </li>
+
+            <li>
+              <a href="#">
+                <i class="fa-solid fa-chart-line"></i>
+                Relatórios
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="perfil">
+          <img src="img/perfil.avif" alt="" />
+          <div>
+            <strong>Lucas Silva</strong>
+            <small>Professor</small>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1>Meus Cursos</h1>
+            <p>Gerencie seus cursos e acompanhe os resultados.</p>
+          </div>
+
+          <div class="icons">
+            <i class="fa-regular fa-circle-question"></i>
+            <i class="fa-regular fa-bell"></i>
+
+            <div class="user-top">
+              <img src="img/perfil.avif" alt="" />
+              <span>Lucas Silva</span>
+            </div>
+          </div>
+        </header>
+
+        <div class="filtros">
+          <input id="buscaCurso" type="text" placeholder="Buscar curso..." />
+          <select id="categoria">
+            <option value="Todas">Todas Categorias</option>
+            <option value="Urgência">Urgência</option>
+            <option value="Enfermagem">Enfermagem</option>
+            <option value="Nutrição">Nutrição</option>
+          </select>
+        </div>
+
+        <section id="cursosGrid" class="cursos-grid"></section>
+      </main>
+      <div id="modalCurso" class="modal">
+        <div class="modal-content">
+          <button id="fechar">×</button>
+
+          <div id="detalhesCurso"></div>
+        </div>
+      </div>
+    </div>
+    <script src="meus-cursos.js"></script>
+  </body>
+</html>

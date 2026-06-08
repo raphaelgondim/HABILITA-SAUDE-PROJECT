@@ -1,0 +1,452 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+body {
+  background: #eef1f7;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 300px;
+  background: linear-gradient(to bottom, #163b97, #2249ad);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: white;
+}
+
+.logo-side h2 {
+  font-size: 28px;
+}
+
+.logo-side p {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.sidebar ul {
+  list-style: none;
+  margin-top: 40px;
+}
+
+.sidebar li {
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.sidebar li a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  font-weight: bold;
+}
+
+.sidebar li:hover,
+.active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.main {
+  flex: 1;
+  padding: 25px;
+}
+
+.topbar {
+  background: #24439d;
+  color: white;
+  margin: -25px -25px 25px -25px;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-top img,
+.perfil img {
+  border-radius: 50%;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 22px;
+  box-shadow:
+    0 3px 8px rgba(0, 0, 0, 0.05),
+    0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.curso,
+.usuario {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.curso img,
+.usuario img {
+  border-radius: 12px;
+}
+
+.grafico {
+  width: 100%;
+  height: 250px;
+
+  margin-top: 20px;
+
+  background:
+    linear-gradient(to right, #dfe6ff 1px, transparent 1px),
+    linear-gradient(to bottom, #dfe6ff 1px, transparent 1px);
+
+  background-size: 50px 50px;
+
+  border-radius: 20px;
+
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.grafico svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
+.usuario img,
+.user-top img,
+.perfil img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.curso img {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.search {
+  position: relative;
+  margin: 15px 0 20px;
+}
+
+.search input {
+  width: 100%;
+  padding: 10px 40px 10px 15px;
+  border-radius: 30px;
+  border: 1px solid #dcdcdc;
+  outline: none;
+}
+
+.search i {
+  position: absolute;
+  right: 15px;
+  top: 12px;
+}
+
+.status {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #41c95c;
+  border-radius: 50%;
+}
+
+.bottom-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  margin-top: 20px;
+}
+
+.ranking-card {
+  background: white;
+  border-radius: 25px;
+  padding: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.ranking-card table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.ranking-card tr {
+  border-bottom: 1px solid #eee;
+}
+
+.ranking-card td {
+  padding: 12px;
+}
+
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.metrica {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.metrica h3 {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.metrica strong {
+  display: block;
+  margin-top: 10px;
+  font-size: 32px;
+  color: #163b97;
+}
+
+.grafico-card {
+  background: white;
+  padding: 25px;
+  border-radius: 20px;
+  margin-bottom: 30px;
+}
+
+.finance-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.finance-header h1 {
+  font-size: 48px;
+  color: #1b2559;
+}
+
+.finance-header p {
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+.acoes-topo {
+  display: flex;
+  gap: 15px;
+}
+
+.acoes-topo input {
+  height: 48px;
+  padding: 0 15px;
+  border: none;
+  border-radius: 12px;
+  background: white;
+}
+
+.acoes-topo button {
+  background: #43c85b;
+  color: white;
+  border: none;
+  padding: 0 20px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.metricas-financeiras {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card-metrica {
+  background: white;
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.card-metrica h3 {
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.card-metrica strong {
+  font-size: 30px;
+}
+
+.azul {
+  border: 2px solid #3b82f6;
+}
+
+.verde {
+  border: 2px solid #45d33f;
+}
+
+.laranja {
+  border: 2px solid #ff8c2f;
+}
+
+.finance-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 25px;
+  margin-bottom: 30px;
+}
+
+.grafico-financeiro {
+  background: white;
+  padding: 20px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.resumo-financeiro {
+  background: white;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.resumo-financeiro h3 {
+  margin-bottom: 20px;
+}
+
+.linha {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+  border-bottom: 1px solid #eee;
+}
+
+#btnSaque {
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 12px;
+  background: #2249ad;
+  color: white;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.historico-card {
+  background: white;
+  padding: 25px;
+  border-radius: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+.historico-card table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+}
+
+.historico-card th,
+.historico-card td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.finance-bottom{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:25px;
+    margin-top:25px;
+}
+
+.pagamento-card,
+.historico-card{
+    background:white;
+    border-radius:24px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,.06);
+}
+
+.pagamento-card h2,
+.historico-card h2{
+    margin-bottom:25px;
+    color:#163b97;
+}
+
+.pagamento-info{
+    display:flex;
+    flex-direction:column;
+    margin-bottom:20px;
+    padding-bottom:15px;
+    border-bottom:1px solid #edf1f7;
+}
+
+.pagamento-info span{
+    font-size:13px;
+    color:#6b7280;
+    margin-bottom:5px;
+}
+
+.pagamento-info strong{
+    font-size:16px;
+    color:#1b2559;
+}
+
+.btn-editar-banco{
+    width:100%;
+    height:50px;
+    border:none;
+    border-radius:14px;
+    background:#163b97;
+    color:white;
+    font-weight:600;
+    cursor:pointer;
+    margin-top:10px;
+    transition:.3s;
+}
+
+.btn-editar-banco:hover{
+    background:#2249ad;
+}

@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <div>
+          <div class="logo-side">
+            <h2>HABILITA.SAÚDE</h2>
+            <p>Plataforma De Cursos em Saúde</p>
+          </div>
+
+          <ul>
+            <li class="active">
+              <a href="./dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Início
+              </a>
+            </li>
+
+            <li>
+              <a href="./meus-cursos.html">
+                <i class="fa-solid fa-book"></i>
+                Meus Cursos
+              </a>
+            </li>
+
+            <li>
+              <a href="./financas.html">
+                <i class="fa-solid fa-chart-pie"></i>
+                Finanças
+              </a>
+            </li>
+
+            <li>
+              <a href="./criar-curso.html">
+                <i class="fa-solid fa-plus"></i>
+                Criar Curso
+              </a>
+            </li>
+
+            <li>
+              <a href="./usuarios.html">
+                <i class="fa-solid fa-users"></i>
+                Usuários
+              </a>
+            </li>
+
+            <li>
+              <a href="./relatorios.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Relatórios
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="perfil">
+          <img src="/img/perfil.avif" />
+
+          <span>Lucas Silva</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="topbar">
+          <div>
+            <h1>PROFESSOR</h1>
+            <p>Bem-vindo(a) ao seu painel</p>
+          </div>
+
+          <div class="icons">
+            <i class="fa-regular fa-bell"></i>
+
+            <i class="fa-regular fa-circle-question"></i>
+
+            <div class="user-top">
+              <img src="/img/perfil.avif" />
+
+              <span>Lucas Silva</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="metricas">
+          <div class="metrica">
+            <i class="fa-solid fa-book"></i>
+            <div>
+              <h3>Total de Cursos</h3>
+              <strong id="totalCursos">0</strong>
+            </div>
+          </div>
+
+          <div class="metrica">
+            <i class="fa-solid fa-users"></i>
+            <div>
+              <h3>Total de Alunos</h3>
+              <strong id="totalAlunos">0</strong>
+            </div>
+          </div>
+
+          <div class="metrica">
+            <i class="fa-solid fa-dollar-sign"></i>
+            <div>
+              <h3>Receita Total</h3>
+              <strong id="receitaTotal">R$ 0</strong>
+            </div>
+          </div>
+
+          <div class="metrica">
+            <i class="fa-solid fa-circle-check"></i>
+            <div>
+              <h3>Publicados</h3>
+              <strong id="cursosPublicados">0</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="cards">
+          <div class="card">
+            <h3>Meus Cursos</h3>
+
+            <div class="search">
+              <input type="text" placeholder="Buscar cursos..." />
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="curso">
+              <img src="/img/nutrição.png" />
+
+              <div>
+                <h4>Nutrição</h4>
+
+                <p>342 alunos</p>
+              </div>
+
+              <strong>186</strong>
+              <div class="status"></div>
+            </div>
+
+            <div class="curso">
+              <img src="./img/saudemental.png" />
+
+              <div>
+                <h4>Saúde Mental</h4>
+
+                <p>287 alunos</p>
+              </div>
+
+              <strong>123</strong>
+              <div class="status"></div>
+            </div>
+            <div class="curso">
+              <img src="/img/enfermagem.png" />
+
+              <div>
+                <h4>Enfermagem Básica</h4>
+
+                <p>98 alunos</p>
+              </div>
+
+              <strong>123</strong>
+              <div class="status"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Evolução De Matrícula</h3>
+
+            <div class="grafico">
+              <svg viewBox="0 0 300 200">
+                <polyline
+                  fill="none"
+                  stroke="#3b82f6"
+                  stroke-width="4"
+                  points="20,150 80,120 140,100 200,50 260,30"
+                />
+              </svg>
+            </div>
+          </div>
+
+          <div class="card">
+            <h3>Últimos Usuários</h3>
+
+            <div class="usuario">
+              <img src="/img/perfil.avif" />
+              <span>João Pedro</span>
+              <small>Online</small>
+            </div>
+
+            <div class="usuario">
+              <img src="/img/perfil.avif" />
+              <span>Maria Fernanda</span>
+              <small>Hoje</small>
+            </div>
+          </div>
+        </section>
+
+        <section class="bottom-cards">
+          <div class="ranking-card">
+            <h3>CURSOS MAIS VENDIDOS</h3>
+
+            <table>
+              <tr>
+                <td>1.</td>
+                <td>Nutrição</td>
+                <td>186 Vendas</td>
+              </tr>
+
+              <tr>
+                <td>2.</td>
+                <td>Saúde Mental</td>
+                <td>123 Vendas</td>
+              </tr>
+
+              <tr>
+                <td>3.</td>
+                <td>Emergência</td>
+                <td>83 Vendas</td>
+              </tr>
+            </table>
+          </div>
+
+          <div class="ranking-card">
+            <h3>CURSOS MAIS BEM AVALIADOS</h3>
+
+            <table>
+              <tr>
+                <td>1.</td>
+                <td>Nutrição</td>
+                <td>⭐ 4.6</td>
+              </tr>
+
+              <tr>
+                <td>2.</td>
+                <td>Saúde Mental</td>
+                <td>⭐ 3.2</td>
+              </tr>
+
+              <tr>
+                <td>3.</td>
+                <td>Emergência</td>
+                <td>⭐ 3.1</td>
+              </tr>
+            </table>
+          </div>
+        </section>
+        <script src="dashboard.js"></script>
+      </main>
+    </div>
+  </body>
+</html>

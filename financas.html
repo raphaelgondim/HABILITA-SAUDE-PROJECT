@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Finanças</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <aside class="sidebar">
+        <div>
+          <div class="logo-side">
+            <h2>HABILITA.SAÚDE</h2>
+            <p>Plataforma De Cursos em Saúde</p>
+          </div>
+
+          <ul>
+            <li>
+              <a href="dashboard.html">
+                <i class="fa-solid fa-house"></i>
+                Início
+              </a>
+            </li>
+
+            <li class="active">
+              <a href="meus-cursos.html">
+                <i class="fa-solid fa-book"></i>
+                Meus Cursos
+              </a>
+            </li>
+
+            <li>
+              <a href="financas.html">
+                <i class="fa-solid fa-chart-pie"></i>
+                Finanças
+              </a>
+            </li>
+
+            <li>
+              <a href="criar-curso.html">
+                <i class="fa-solid fa-plus"></i>
+                Criar Curso
+              </a>
+            </li>
+
+            <li>
+              <a href="usuarios.html">
+                <i class="fa-solid fa-users"></i>
+                Usuários
+              </a>
+            </li>
+
+            <li>
+              <a href="relatorios.html">
+                <i class="fa-solid fa-chart-line"></i>
+                Relatórios
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="perfil">
+          <img src="/img/perfil.avif" />
+
+          <span>Lucas Silva</span>
+        </div>
+      </aside>
+
+      <main class="main">
+        <header class="finance-header">
+          <div>
+            <h1>FINANÇAS</h1>
+            <p>Acompanhe seus ganhos, repasses e históricos financeiros</p>
+          </div>
+
+          <div class="acoes-topo">
+            <input type="month" id="filtroMes" />
+            <button id="btnRelatorio">
+              <i class="fa-solid fa-download"></i>
+              Gerar Relatório
+            </button>
+          </div>
+        </header>
+
+        <section class="metricas-financeiras">
+          <div class="card-metrica azul">
+            <h3>Faturamento Bruto</h3>
+            <strong id="faturamentoBruto">R$ 0,00</strong>
+          </div>
+
+          <div class="card-metrica verde">
+            <h3>Receita Líquida</h3>
+            <strong id="receitaLiquida">R$ 0,00</strong>
+          </div>
+
+          <div class="card-metrica azul">
+            <h3>Saldo Disponível</h3>
+            <strong id="saldoDisponivel">R$ 0,00</strong>
+          </div>
+
+          <div class="card-metrica laranja">
+            <h3>Total de Vendas</h3>
+            <strong id="totalVendas">0</strong>
+          </div>
+        </section>
+
+        <section class="finance-grid">
+          <div class="grafico-financeiro">
+            <canvas id="graficoGanhos"></canvas>
+          </div>
+
+          <div class="resumo-financeiro">
+            <h3>RESUMO FINANCEIRO</h3>
+
+            <div class="linha">
+              <span>Faturamento Bruto</span>
+              <strong id="resumoBruto"></strong>
+            </div>
+
+            <div class="linha">
+              <span>Taxa da Plataforma</span>
+              <strong id="resumoTaxa"></strong>
+            </div>
+
+            <div class="linha">
+              <span>Impostos</span>
+              <strong id="resumoImpostos"></strong>
+            </div>
+
+            <div class="linha">
+              <span>Receita Líquida</span>
+              <strong id="resumoLiquida"></strong>
+            </div>
+
+            <button id="btnSaque">Solicitar Saque</button>
+          </div>
+        </section>
+
+        <section class="finance-bottom">
+          <div class="historico-card">
+            <h2>Histórico de Repasses</h2>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Descrição</th>
+                  <th>Valor Bruto</th>
+                  <th>Taxa</th>
+                  <th>Impostos</th>
+                  <th>Valor Líquido</th>
+                </tr>
+              </thead>
+
+              <tbody id="tabelaRepasses"></tbody>
+            </table>
+          </div>
+
+          <div class="pagamento-card">
+            <h2>Informações de Pagamento</h2>
+
+            <div class="pagamento-info">
+              <span>Forma de Pagamento</span>
+              <strong>Transferência Bancária</strong>
+            </div>
+
+            <div class="pagamento-info">
+              <span>Titular da Conta</span>
+              <strong>Lucas Silva</strong>
+            </div>
+
+            <div class="pagamento-info">
+              <span>Banco</span>
+              <strong>Banco do Brasil</strong>
+            </div>
+
+            <div class="pagamento-info">
+              <span>Agência</span>
+              <strong>1234-5</strong>
+            </div>
+
+            <div class="pagamento-info">
+              <span>Conta</span>
+              <strong>12345-6</strong>
+            </div>
+
+            <button class="btn-editar-banco">
+              <i class="fa-solid fa-pen"></i>
+              Editar Dados Bancários
+            </button>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="financas.js"></script>
+  </body>
+</html>
