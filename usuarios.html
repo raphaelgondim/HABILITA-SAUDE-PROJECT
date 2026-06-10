@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Dashboard</title>
+    <title>Usuários</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -24,7 +24,7 @@
           </div>
 
           <ul>
-            <li class="active">
+            <li>
               <a href="./dashboard.html">
                 <i class="fa-solid fa-house"></i>
                 Início
@@ -52,7 +52,7 @@
               </a>
             </li>
 
-            <li>
+            <li class="active">
               <a href="./usuarios.html">
                 <i class="fa-solid fa-users"></i>
                 Usuários
@@ -79,7 +79,7 @@
         <header class="topbar">
           <div>
             <h1>PROFESSOR</h1>
-            <p>Bem-vindo(a) ao seu painel</p>
+            <p>Gerencie os alunos cadastrados na plataforma.</p>
           </div>
 
           <div class="icons">
@@ -87,76 +87,95 @@
             <i class="fa-regular fa-bell"></i>
 
             <div class="user-top">
-              <img src="./img/perfil.jpg" />
-
+              <img src="img/perfil.avif" alt="" />
               <span>Lucas Silva</span>
             </div>
           </div>
         </header>
 
-        
+        <!-- MÉTRICAS -->
 
-        <section class="cards">
-          <div class="card">
-            <h3>Meus Cursos</h3>
-
-            <div class="search">
-              <input type="text" placeholder="Buscar cursos..." />
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div id="listaCursosDashboard"></div>
+        <section class="metricas">
+          <div class="metrica">
+            <h3>Total de Alunos</h3>
+            <strong id="totalAlunos">0</strong>
           </div>
 
-          <div class="card">
-            <h3>Evolução De Matrícula</h3>
-
-            <div class="grafico">
-              <canvas id="graficoVendas"></canvas>
-            </div>
+          <div class="metrica">
+            <h3>Alunos Ativos</h3>
+            <strong id="alunosAtivos">0</strong>
           </div>
 
-          <div class="card">
-            <h3>Últimos Usuários</h3>
+          <div class="metrica">
+            <h3>Concluintes</h3>
+            <strong id="concluintes">0</strong>
+          </div>
 
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>João Pedro</span>
-              <small>Online</small>
-            </div>
-
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Maria Fernanda</span>
-              <small>Hoje</small>
-            </div>
-
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Ricardo Souza</span>
-              <small>3 dias Atrás</small>
-            </div>
+          <div class="metrica">
+            <h3>Certificados</h3>
+            <strong id="certificados">0</strong>
           </div>
         </section>
 
-        <section class="bottom-cards">
-          <div class="ranking-card">
-            <h3>CURSOS MAIS VENDIDOS</h3>
-            <table>
-              <tbody id="rankingVendas"></tbody>
-            </table>
-          </div>
+        <!-- FILTROS -->
 
-          <div class="ranking-card">
-            <h3>CURSOS MAIS BEM AVALIADOS</h3>
+        <section class="filtros">
+          <input type="text" id="buscarAluno" placeholder="Buscar aluno..." />
 
-            <table>
-              <tbody id="rankingAvaliacoes"></tbody>
-            </table>
-          </div>
+          <select id="filtroCurso">
+            <option>Todos os Cursos</option>
+          </select>
+
+          <select id="filtroStatus">
+            <option>Todos os Status</option>
+            <option>Ativo</option>
+            <option>Concluído</option>
+          </select>
         </section>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="dashboard.js"></script>
+
+        <!-- TABELA -->
+
+        <section class="usuarios-card">
+          <table>
+            <thead>
+              <tr>
+                <th>Aluno</th>
+                <th>Curso</th>
+                <th>Progresso</th>
+                <th>Certificado</th>
+                <th>Nota</th>
+              </tr>
+            </thead>
+
+            <tbody id="tabelaUsuarios">
+              <tr>
+                <td colspan="5" class="vazio">Nenhum aluno cadastrado.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </main>
     </div>
+    <script>
+      const filtroCurso = document.getElementById("filtroCurso");
+
+      function carregarCursosFiltro() {
+        const cursos = JSON.parse(localStorage.getItem("cursos")) || [];
+
+        filtroCurso.innerHTML = `<option value="">
+      Todos os Cursos
+    </option>`;
+
+        cursos.forEach((curso) => {
+          filtroCurso.innerHTML += `
+      <option value="${curso.id}">
+        ${curso.nome}
+      </option>
+    `;
+        });
+      }
+
+      carregarCursosFiltro();
+    </script>
   </body>
 </html>

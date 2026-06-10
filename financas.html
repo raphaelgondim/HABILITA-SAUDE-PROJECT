@@ -22,42 +22,42 @@
 
           <ul>
             <li>
-              <a href="dashboard.html">
+              <a href="./dashboard.html">
                 <i class="fa-solid fa-house"></i>
                 Início
               </a>
             </li>
 
-            <li class="active">
-              <a href="meus-cursos.html">
+            <li>
+              <a href="./meus-cursos.html">
                 <i class="fa-solid fa-book"></i>
                 Meus Cursos
               </a>
             </li>
 
-            <li>
-              <a href="financas.html">
+            <li class="active">
+              <a href="./financas.html">
                 <i class="fa-solid fa-chart-pie"></i>
                 Finanças
               </a>
             </li>
 
             <li>
-              <a href="criar-curso.html">
+              <a href="./criar-curso.html">
                 <i class="fa-solid fa-plus"></i>
                 Criar Curso
               </a>
             </li>
 
             <li>
-              <a href="usuarios.html">
+              <a href="./usuarios.html">
                 <i class="fa-solid fa-users"></i>
                 Usuários
               </a>
             </li>
 
             <li>
-              <a href="relatorios.html">
+              <a href="./relatorios.html">
                 <i class="fa-solid fa-chart-line"></i>
                 Relatórios
               </a>
@@ -73,23 +73,38 @@
       </aside>
 
       <main class="main">
-        <header class="finance-header">
+        <header class="topbar">
           <div>
-            <h1>FINANÇAS</h1>
-            <p>Acompanhe seus ganhos, repasses e históricos financeiros</p>
+            <h1>PROFESSOR</h1>
+            <p>Acompanhe Seus Ganhos, Repasses e Históricos Financeiros</p>
           </div>
 
-          <div class="acoes-topo">
-            <input type="month" id="filtroMes" />
-            <button id="btnRelatorio">
-              <i class="fa-solid fa-download"></i>
-              Gerar Relatório
-            </button>
+          <div class="icons">
+            <i class="fa-regular fa-circle-question"></i>
+
+            <i class="fa-regular fa-bell"></i>
+            <div class="user-top">
+              <img src="./img/perfil.jpg" />
+
+              <span>Lucas Silva</span>
+            </div>
           </div>
         </header>
 
+        <div>
+          <h1>FINANÇAS</h1>
+          <p>Acompanhe seus Ganhos, Repasses e Históricos Financeiros</p>
+        </div>
+
+        <div class="acoes-topo">
+          <input type="month" id="filtroMes" />
+          <button id="btnRelatorio">
+            <i class="fa-solid fa-download"></i>
+            Gerar Relatório
+          </button>
+        </div>
         <section class="metricas-financeiras">
-          <div class="card-metrica azul">
+          <div class="card-metrica azul-claro">
             <h3>Faturamento Bruto</h3>
             <strong id="faturamentoBruto">R$ 0,00</strong>
           </div>

@@ -24,7 +24,7 @@
           </div>
 
           <ul>
-            <li class="active">
+            <li>
               <a href="./dashboard.html">
                 <i class="fa-solid fa-house"></i>
                 Início
@@ -59,7 +59,7 @@
               </a>
             </li>
 
-            <li>
+            <li class="active">
               <a href="./relatorios.html">
                 <i class="fa-solid fa-chart-line"></i>
                 Relatórios
@@ -79,7 +79,10 @@
         <header class="topbar">
           <div>
             <h1>PROFESSOR</h1>
-            <p>Bem-vindo(a) ao seu painel</p>
+            <p>
+              Visualize estatísticas, desempenhos e informações relevantes da
+              plataforma
+            </p>
           </div>
 
           <div class="icons">
@@ -94,68 +97,66 @@
           </div>
         </header>
 
-        
-
-        <section class="cards">
-          <div class="card">
-            <h3>Meus Cursos</h3>
-
-            <div class="search">
-              <input type="text" placeholder="Buscar cursos..." />
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div id="listaCursosDashboard"></div>
+        <section class="metricas-relatorios">
+          <div class="metrica">
+            <h3>Total de Inscrições</h3>
+            <strong id="totalInscricoes">0</strong>
           </div>
 
-          <div class="card">
-            <h3>Evolução De Matrícula</h3>
-
-            <div class="grafico">
-              <canvas id="graficoVendas"></canvas>
-            </div>
+          <div class="metrica">
+            <h3>Conclusões</h3>
+            <strong id="totalConcluidos">0</strong>
           </div>
 
-          <div class="card">
-            <h3>Últimos Usuários</h3>
+          <div class="metrica">
+            <h3>Atividades Pendentes</h3>
+            <strong id="atividadesPendentes">0</strong>
+          </div>
 
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>João Pedro</span>
-              <small>Online</small>
-            </div>
-
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Maria Fernanda</span>
-              <small>Hoje</small>
-            </div>
-
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Ricardo Souza</span>
-              <small>3 dias Atrás</small>
-            </div>
+          <div class="metrica">
+            <h3>Média de Avaliação</h3>
+            <strong id="mediaAvaliacao">0</strong>
           </div>
         </section>
 
-        <section class="bottom-cards">
-          <div class="ranking-card">
-            <h3>CURSOS MAIS VENDIDOS</h3>
-            <table>
-              <tbody id="rankingVendas"></tbody>
-            </table>
+        <section class="filtros-relatorio">
+          <select id="filtroPeriodo">
+            <option value="30">Últimos 30 dias</option>
+            <option value="90">Últimos 90 dias</option>
+            <option value="365">Último ano</option>
+          </select>
+
+          <select id="filtroCurso">
+            <option value="">Todos os Cursos</option>
+          </select>
+
+          <button id="btnRelatorio">Gerar Relatório</button>
+        </section>
+
+        <section class="relatorio-grid">
+          <div class="grafico-card">
+            <h2>Desempenho dos Cursos</h2>
+
+            <div class="grafico-relatorio">
+              <canvas id="graficoCursos"></canvas>
+            </div>
           </div>
 
-          <div class="ranking-card">
-            <h3>CURSOS MAIS BEM AVALIADOS</h3>
+          <div class="status-card">
+            <h2>Status dos Cursos</h2>
 
-            <table>
-              <tbody id="rankingAvaliacoes"></tbody>
-            </table>
+            <canvas id="graficoStatus"></canvas>
           </div>
         </section>
+
+        <section class="ranking-card">
+          <h2>Cursos Mais Acessados</h2>
+
+          <div id="rankingCursos"></div>
+        </section>
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="dashboard.js"></script>
+        <script src="relatorios.js"></script>
       </main>
     </div>
   </body>

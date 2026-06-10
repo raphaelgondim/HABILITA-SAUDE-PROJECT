@@ -24,42 +24,42 @@
 
           <ul>
             <li>
-              <a href="dashboard.html">
+              <a href="./dashboard.html">
                 <i class="fa-solid fa-house"></i>
                 Início
               </a>
             </li>
 
             <li class="active">
-              <a href="#">
+              <a href="./meus-cursos.html">
                 <i class="fa-solid fa-book"></i>
                 Meus Cursos
               </a>
             </li>
 
             <li>
-              <a href="financas.html">
+              <a href="./financas.html">
                 <i class="fa-solid fa-chart-pie"></i>
                 Finanças
               </a>
             </li>
 
             <li>
-              <a href="#">
+              <a href="./criar-curso.html">
                 <i class="fa-solid fa-plus"></i>
                 Criar Curso
               </a>
             </li>
 
             <li>
-              <a href="#">
+              <a href="./usuarios.html">
                 <i class="fa-solid fa-users"></i>
                 Usuários
               </a>
             </li>
 
             <li>
-              <a href="#">
+              <a href="./relatorios.html">
                 <i class="fa-solid fa-chart-line"></i>
                 Relatórios
               </a>
@@ -79,8 +79,8 @@
       <main class="main">
         <header class="topbar">
           <div>
-            <h1>Meus Cursos</h1>
-            <p>Gerencie seus cursos e acompanhe os resultados.</p>
+            <h1>PROFESSOR</h1>
+            <p>Bem-vindo(a) ao seu painel</p>
           </div>
 
           <div class="icons">
@@ -94,13 +94,29 @@
           </div>
         </header>
 
+        <div>
+          <h1>Meus Cursos</h1>
+          <p>Gerencie seus cursos e acompanhe os resultados.</p>
+        </div>
+
         <div class="filtros">
           <input id="buscaCurso" type="text" placeholder="Buscar curso..." />
+
           <select id="categoria">
             <option value="Todas">Todas Categorias</option>
             <option value="Urgência">Urgência</option>
             <option value="Enfermagem">Enfermagem</option>
             <option value="Nutrição">Nutrição</option>
+            <option value="Fisioterapia">Fisioterapia</option>
+            <option value="Saúde Mental">Saúde Mental</option>
+          </select>
+
+          <select id="filtroCarga">
+            <option value="Todas">Todas Cargas Horárias</option>
+          </select>
+
+          <select id="filtroPublico">
+            <option value="Todos">Todos os Públicos</option>
           </select>
         </div>
 

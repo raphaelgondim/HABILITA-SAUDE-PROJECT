@@ -1,109 +1,219 @@
-let cursos =
-JSON.parse(
-  localStorage.getItem("cursos")
-) || [
-  {
-    id: 1,
-    nome: "Enfermagem Básica",
-    categoria: "Enfermagem",
-    nivel: "Platinum",
-    status: "Publicado",
-    preco: 5800,
-    alunos: 238,
-    vendas: 87,
-    imagem: "img/enfermeiro.jpg",
-    descricao: "Domine os fundamentos da enfermagem.",
-  },
+let cursos = JSON.parse(localStorage.getItem("cursos")) || [];
 
-  {
-    id: 2,
-    nome: "Primeiros Socorros",
-    categoria: "Urgência",
-    nivel: "Silver",
-    status: "Publicado",
-    preco: 900,
-    alunos: 424,
-    vendas: 70,
-    imagem: "img/socorros.jpg",
-    descricao: "Aprenda técnicas de emergência.",
-  },
-];
+function carregarFiltros() {
+  const cargas = [...new Set(cursos.map((c) => c.cargaHoraria))];
+
+  const publicos = [...new Set(cursos.map((c) => c.publico))];
+
+  cargas.forEach((carga) => {
+    if (!carga) return;
+
+    filtroCarga.innerHTML += `
+      <option value="${carga}">
+        ${carga}
+      </option>
+    `;
+  });
+
+  publicos.forEach((publico) => {
+    if (!publico) return;
+
+    filtroPublico.innerHTML += `
+      <option value="${publico}">
+        ${publico}
+      </option>
+    `;
+  });
+}
 
 const grid = document.getElementById("cursosGrid");
+
+const modalCurso = document.getElementById("modalCurso");
+
+const detalhesCurso = document.getElementById("detalhesCurso");
+
+const fechar = document.getElementById("fechar");
+
+const busca = document.getElementById("buscaCurso");
+
+const categoria = document.getElementById("categoria");
+
+const filtroCarga = document.getElementById("filtroCarga");
+
+const filtroPublico = document.getElementById("filtroPublico");
+
+carregarFiltros();
+
+// ========================
+// RENDERIZAR CURSOS
+// ========================
 
 function renderCursos(lista) {
   grid.innerHTML = "";
 
+  if (lista.length === 0) {
+    grid.innerHTML = `
+      <p style="
+        grid-column:1/-1;
+        text-align:center;
+      ">
+        Nenhum curso encontrado.
+      </p>
+    `;
+
+    return;
+  }
+
   lista.forEach((curso) => {
+    const nivel = curso.nivel || "Silver";
+
     grid.innerHTML += `
-<div class="curso-card" data-id="${curso.id}">
+      <div
+        class="curso-card"
+        data-id="${curso.id}"
+      >
 
-  <div class="curso-top">
-    <img src="${curso.imagem}" alt="${curso.nome}">
+        <div class="curso-top">
 
-    <div class="tags">
-      <span class="tag ${curso.nivel.toLowerCase()}">
-        ${curso.nivel}
-      </span>
+          <img
+            src="${curso.imagem}"
+            alt="${curso.nome}"
+          >
 
-      <span class="status">
-        ${curso.status}
-      </span>
-    </div>
-  </div>
+          <div class="tags">
 
-  <div class="curso-content">
-    <h3>${curso.nome}</h3>
+            <span
+              class="tag ${nivel.toLowerCase()}"
+            >
+              ${nivel}
+            </span>
 
-    <p>${curso.descricao}</p>
-  </div>
+            <span
+              class="status ${
+                curso.status === "Privado" ? "privado" : "publicado"
+              }"
+            >
+              ${curso.status}
+            </span>
 
-  <div class="curso-info">
+          </div>
 
-    <div>
-      <strong>R$ ${curso.preco.toLocaleString("pt-BR")}</strong>
-      <span>Receita</span>
-    </div>
+        </div>
 
-    <div>
-      <strong>${curso.alunos}</strong>
-      <span>Alunos</span>
-    </div>
+        <div class="curso-content">
 
-    <div>
-      <strong>${curso.vendas}</strong>
-      <span>Vendas</span>
-    </div>
+          <h3>${curso.nome}</h3>
 
-  </div>
+          <p>
+            ${curso.descricao || "Sem descrição"}
+          </p>
 
-  <div class="acoes">
-    <button>Ver Ganhos</button>
-    <button>Editar</button>
-    <button>Feedback</button>
-  </div>
+        </div>
+
+        <div class="curso-info">
+
+          <div>
+
+            <strong>
+              R$
+              ${
+                Number(curso.preco) === 0
+                  ? "Gratuito"
+                  : `R$ ${Number(curso.preco).toLocaleString("pt-BR", {
+                      minimumFractionDigits: 2,
+                      maximumFractionDigits: 2,
+                    })}`
+              }
+            </strong>
+
+            <span>Receita</span>
+
+          </div>
+
+          <div>
+
+            <strong>
+              ${curso.alunos || 0}
+            </strong>
+
+            <span>Alunos</span>
+
+          </div>
+
+          <div>
+
+            <strong>
+              ${curso.vendas || 0}
+            </strong>
+
+            <span>Vendas</span>
+
+          </div>
+
+        </div>
+
+        <div class="acoes">
+
+  <button>Ver Ganhos</button>
+
+  <button
+    class="btn-editar"
+    data-id="${curso.id}"
+  >
+    Editar
+  </button>
+
+  <button
+    class="btn-excluir"
+    data-id="${curso.id}"
+  >
+    Excluir
+  </button>
 
 </div>
-`;
+
+      </div>
+    `;
   });
 }
 
-renderCursos(cursos);
+// ========================
+// MODAL
+// ========================
 
-document.addEventListener("click", (e) => {
-  const card = e.target.closest(".curso-card");
+function aplicarFiltros() {
+  const texto = busca.value.toLowerCase();
 
-  if (!card) return;
+  const categoriaSelecionada = categoria.value;
 
-  const id = Number(card.dataset.id);
+  const cargaSelecionada = filtroCarga.value;
 
-  const curso = cursos.find((c) => c.id === id);
+  const publicoSelecionado = filtroPublico.value;
 
-  abrirDetalhes(curso);
-});
+  let resultado = [...cursos];
+
+  if (texto) {
+    resultado = resultado.filter((c) => c.nome.toLowerCase().includes(texto));
+  }
+
+  if (categoriaSelecionada !== "Todas") {
+    resultado = resultado.filter((c) => c.categoria === categoriaSelecionada);
+  }
+
+  if (cargaSelecionada !== "Todas") {
+    resultado = resultado.filter((c) => c.cargaHoraria === cargaSelecionada);
+  }
+
+  if (publicoSelecionado !== "Todos") {
+    resultado = resultado.filter((c) => c.publico === publicoSelecionado);
+  }
+
+  renderCursos(resultado);
+}
 
 function abrirDetalhes(curso) {
   detalhesCurso.innerHTML = `
+
     <h2>${curso.nome}</h2>
 
     <img
@@ -116,70 +226,143 @@ function abrirDetalhes(curso) {
       "
     >
 
-    <p>${curso.descricao}</p>
+    <p>
+      ${curso.descricao || ""}
+    </p>
 
     <hr style="margin:20px 0">
 
-    <p><strong>Categoria:</strong> ${curso.categoria}</p>
+    <p>
+      <strong>Categoria:</strong>
+      ${curso.categoria || "-"}
+    </p>
 
-    <p><strong>Alunos:</strong> ${curso.alunos}</p>
+    <p>
+      <strong>Alunos:</strong>
+      ${curso.alunos || 0}
+    </p>
 
-    <p><strong>Vendas:</strong> ${curso.vendas}</p>
+    <p>
+      <strong>Vendas:</strong>
+      ${curso.vendas || 0}
+    </p>
 
     <p>
       <strong>Receita:</strong>
-      R$ ${curso.preco.toLocaleString("pt-BR")}
+      R$
+      ${
+        Number(curso.preco) === 0
+          ? "Gratuito"
+          : `R$ ${Number(curso.preco).toLocaleString("pt-BR", {
+              minimumFractionDigits: 2,
+              maximumFractionDigits: 2,
+            })}`
+      }
     </p>
 
-    <p><strong>Status:</strong> ${curso.status}</p>
+    <p>
+      <strong>Status:</strong>
+      ${curso.status}
+    </p>
+
   `;
 
   modalCurso.classList.add("show");
 }
 
-const modalCurso = document.getElementById("modalCurso");
+// ========================
+// CLIQUES
+// ========================
 
-const detalhesCurso = document.getElementById("detalhesCurso");
+document.addEventListener("click", (e) => {
+  // EDITAR
 
-const fechar = document.getElementById("fechar");
+  if (e.target.classList.contains("btn-editar")) {
+    e.stopPropagation();
 
-const busca = document.getElementById("buscaCurso");
+    const id = Number(e.target.dataset.id);
 
-busca.addEventListener("input", () => {
-  const termo = busca.value.toLowerCase();
+    const curso = cursos.find((c) => c.id === id);
 
-  const resultado = cursos.filter((c) => c.nome.toLowerCase().includes(termo));
+    if (!curso) return;
 
-  renderCursos(resultado);
+    localStorage.setItem("cursoEditando", JSON.stringify(curso));
+
+    window.location.href = "criar-curso.html";
+
+    return;
+  }
+
+  // ABRIR MODAL
+
+  const card = e.target.closest(".curso-card");
+
+  if (!card) return;
+
+  const id = Number(card.dataset.id);
+
+  const curso = cursos.find((c) => c.id === id);
+
+  if (curso) {
+    abrirDetalhes(curso);
+  }
 });
+
+// ========================
+// FECHAR MODAL
+// ========================
 
 fechar.addEventListener("click", () => {
   modalCurso.classList.remove("show");
 });
 
-const categoria = document.getElementById("categoria");
+// ========================
+// BUSCA
+// ========================
 
-categoria.addEventListener("change", () => {
-  const valor = categoria.value;
+busca.addEventListener("input", aplicarFiltros);
 
-  if (valor === "Todas") {
-    renderCursos(cursos);
-    return;
-  }
+categoria.addEventListener("change", aplicarFiltros);
 
-  const filtrados = cursos.filter((c) => c.categoria === valor);
+filtroCarga.addEventListener("change", aplicarFiltros);
 
-  renderCursos(filtrados);
-});
+filtroPublico.addEventListener("change", aplicarFiltros);
 
-localStorage;
+// ========================
+// FILTRO CATEGORIA
+// ========================
+
+// ========================
+// SALVAR
+// ========================
 
 function salvarCursos() {
-
-  localStorage.setItem(
-    "cursos",
-    JSON.stringify(cursos)
-  );
-
+  localStorage.setItem("cursos", JSON.stringify(cursos));
 }
+
 salvarCursos();
+
+renderCursos(cursos);
+
+document.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("btn-excluir")) return;
+
+  const id = Number(e.target.dataset.id);
+
+  const confirmar = confirm("Deseja realmente excluir este curso?");
+
+  if (!confirmar) return;
+
+  cursos = cursos.filter((curso) => curso.id !== id);
+
+  localStorage.setItem("cursos", JSON.stringify(cursos));
+
+  filtroCarga.innerHTML =
+    '<option value="Todas">Todas Cargas Horárias</option>';
+
+  filtroPublico.innerHTML = '<option value="Todos">Todos os Públicos</option>';
+
+  carregarFiltros();
+
+  aplicarFiltros();
+});
