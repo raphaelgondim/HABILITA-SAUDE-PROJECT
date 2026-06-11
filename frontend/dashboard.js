@@ -1,5 +1,14 @@
 const cursos = JSON.parse(localStorage.getItem("cursos")) || [];
 
+console.log("Cursos carregados:", cursos);
+
+console.log(
+  "Elemento Dashboard:",
+  document.getElementById("listaCursosDashboard"),
+);
+
+console.log(cursos);
+
 function atualizarMetricas() {
   const totalCursos = cursos.length;
 
@@ -9,7 +18,7 @@ function atualizarMetricas() {
   );
 
   const receitaTotal = cursos.reduce(
-    (total, curso) => total + (curso.preco || 0),
+    (total, curso) => total + curso.preco * (curso.vendas || 0),
     0,
   );
 
@@ -17,14 +26,26 @@ function atualizarMetricas() {
     (curso) => curso.status === "Publicado",
   ).length;
 
-  document.getElementById("totalCursos").textContent = totalCursos;
+  const totalCursosEl = document.getElementById("totalCursos");
+  const totalAlunosEl = document.getElementById("totalAlunos");
+  const receitaTotalEl = document.getElementById("receitaTotal");
+  const cursosPublicadosEl = document.getElementById("cursosPublicados");
 
-  document.getElementById("totalAlunos").textContent = totalAlunos;
+  if (totalCursosEl) {
+    totalCursosEl.textContent = totalCursos;
+  }
 
-  document.getElementById("receitaTotal").textContent =
-    "R$ " + receitaTotal.toLocaleString("pt-BR");
+  if (totalAlunosEl) {
+    totalAlunosEl.textContent = totalAlunos;
+  }
 
-  document.getElementById("cursosPublicados").textContent = publicados;
+  if (receitaTotalEl) {
+    receitaTotalEl.textContent = "R$ " + receitaTotal.toLocaleString("pt-BR");
+  }
+
+  if (cursosPublicadosEl) {
+    cursosPublicadosEl.textContent = publicados;
+  }
 }
 
 function renderizarCursosDashboard() {
@@ -133,6 +154,27 @@ function renderizarAvaliacoes() {
       `;
   });
 }
+
+function criarNotificacao(titulo, descricao, tipo) {
+  const notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+  notificacoes.unshift({
+    id: Date.now(),
+    titulo,
+    descricao,
+    tipo,
+    lida: false,
+    data: new Date().toLocaleString("pt-BR"),
+  });
+
+  localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
+}
+
+const notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+const naoLidas = notificacoes.filter((n) => !n.lida).length;
+
+document.getElementById("badgeNotificacao").textContent = naoLidas;
 
 atualizarMetricas();
 

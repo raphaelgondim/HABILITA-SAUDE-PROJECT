@@ -52,8 +52,8 @@
               </a>
             </li>
 
-            <li class="active">
-              <a href="./usuarios.html">
+            <li>
+              <a href="./usuarios.html" class="menu-ativo">
                 <i class="fa-solid fa-users"></i>
                 Usuários
               </a>
@@ -69,9 +69,13 @@
         </div>
 
         <div class="perfil">
-          <img src="./img/perfil.jpg" />
+          <div class="foto-wrapper">
+            <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
 
-          <span>Lucas Silva</span>
+            <span class="online"></span>
+          </div>
+
+          <span id="nomeUsuarioSidebar"></span>
         </div>
       </aside>
 
@@ -83,43 +87,70 @@
           </div>
 
           <div class="icons">
-            <i class="fa-regular fa-circle-question"></i>
-            <i class="fa-regular fa-bell"></i>
+            <a href="suporte.html">
+              <i class="fa-regular fa-circle-question"></i>
+            </a>
+            <a href="notificacoes.html">
+              <i class="fa-regular fa-bell"
+                ><span id="badgeNotificacao"></span
+              ></i>
+            </a>
 
             <div class="user-top">
-              <img src="img/perfil.avif" alt="" />
-              <span>Lucas Silva</span>
+              <div class="foto-wrapper">
+                <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
+
+                <span class="online"></span>
+              </div>
+
+              <span id="nomeUsuarioTop"></span>
             </div>
           </div>
         </header>
 
         <!-- MÉTRICAS -->
 
-        <section class="metricas">
-          <div class="metrica">
-            <h3>Total de Alunos</h3>
-            <strong id="totalAlunos">0</strong>
+        <section class="metricas-dashboard">
+          <div class="card-metrica azul">
+            <div>
+              <span>TOTAL DE ALUNOS</span>
+              <strong id="totalAlunos">0</strong>
+            </div>
+
+            <i class="fa-solid fa-users"></i>
           </div>
 
-          <div class="metrica">
-            <h3>Alunos Ativos</h3>
-            <strong id="alunosAtivos">0</strong>
+          <div class="card-metrica verde">
+            <div>
+              <span>ALUNOS ATIVOS</span>
+              <strong id="alunosAtivos">0</strong>
+            </div>
+
+            <i class="fa-solid fa-user-check"></i>
           </div>
 
-          <div class="metrica">
-            <h3>Concluintes</h3>
-            <strong id="concluintes">0</strong>
+          <div class="card-metrica azul-claro">
+            <div>
+              <span>ALUNOS CONCLUÍRAM</span>
+              <strong id="concluintes">0</strong>
+            </div>
+
+            <i class="fa-solid fa-graduation-cap"></i>
           </div>
 
-          <div class="metrica">
-            <h3>Certificados</h3>
-            <strong id="certificados">0</strong>
+          <div class="card-metrica amarelo">
+            <div>
+              <span>NOVOS ESSA SEMANA</span>
+              <strong>0</strong>
+            </div>
+
+            <i class="fa-solid fa-star"></i>
           </div>
         </section>
 
         <!-- FILTROS -->
 
-        <section class="filtros">
+        <section class="filtros-modernos">
           <input type="text" id="buscarAluno" placeholder="Buscar aluno..." />
 
           <select id="filtroCurso">
@@ -177,5 +208,7 @@
 
       carregarCursosFiltro();
     </script>
+    <script src="user.js"></script>
+    <script src="global.js"></script>
   </body>
 </html>

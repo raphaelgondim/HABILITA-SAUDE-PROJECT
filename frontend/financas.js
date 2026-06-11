@@ -1,6 +1,9 @@
 const cursos = JSON.parse(localStorage.getItem("cursos")) || [];
 
-const faturamentoBruto = cursos.reduce((acc, curso) => acc + curso.preco, 0);
+const faturamentoBruto = cursos.reduce(
+  (acc, curso) => acc + curso.preco * curso.vendas,
+  0,
+);
 
 const totalVendas = cursos.reduce((acc, curso) => acc + curso.vendas, 0);
 
@@ -59,10 +62,25 @@ cursos.forEach((curso) => {
     <tr>
       <td>08/06/2026</td>
       <td>${curso.nome}</td>
-      <td>R$ ${curso.preco}</td>
+      <td>${curso.preco}</td>
       <td>10%</td>
       <td>15%</td>
-      <td>R$ ${(curso.preco * 0.75).toFixed(2)}</td>
+      <td>${(curso.preco * 0.75).toFixed(2)}</td>
     </tr>
   `;
 });
+
+function criarNotificacao(titulo, descricao, tipo) {
+  const notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+  notificacoes.unshift({
+    id: Date.now(),
+    titulo,
+    descricao,
+    tipo,
+    lida: false,
+    data: new Date().toLocaleString("pt-BR"),
+  });
+
+  localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
+}

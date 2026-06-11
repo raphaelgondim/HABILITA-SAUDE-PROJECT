@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Login</title>
+
+    <link rel="stylesheet" href="login.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="login-box">
+        <div class="logo">
+          <h1>HABILITA<span>.SAÚDE</span></h1>
+          <p>Plataforma de Cursos Em Saúde</p>
+        </div>
+
+        <div class="input-box">
+          <label>E-mail</label>
+
+          <div class="input">
+            <i class="fa-regular fa-envelope"></i>
+
+            <input type="email" placeholder="seuemail@exemplo.com" />
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label>Senha</label>
+
+          <div class="input">
+            <i class="fa-solid fa-lock"></i>
+
+            <input type="password" placeholder="********" />
+          </div>
+        </div>
+
+        <button onclick="entrar()">Entrar</button>
+        <p id="abrirCadastro" class="criar-conta">Criar Conta</p>
+      </div>
+    </div>
+
+    <div id="modalCadastro" class="modal-cadastro">
+      <div class="cadastro-box">
+        <h2>Criar Conta</h2>
+
+        <input type="text" id="nomeCadastro" placeholder="Nome completo" />
+
+        <input type="email" id="emailCadastro" placeholder="E-mail" />
+
+        <input type="password" id="senhaCadastro" placeholder="Senha" />
+
+        <input
+          type="password"
+          id="confirmarSenha"
+          placeholder="Confirmar senha"
+        />
+
+        <button onclick="criarConta()">Criar Conta</button>
+        <input type="file" id="fotoCadastro" accept="image/*" />
+      </div>
+    </div>
+    <script>
+      const modal = document.getElementById("modalCadastro");
+
+      document.getElementById("abrirCadastro").addEventListener("click", () => {
+        modal.classList.add("ativo");
+      });
+
+      function criarConta() {
+        const nome = document.getElementById("nomeCadastro").value;
+
+        const email = document.getElementById("emailCadastro").value;
+
+        const senha = document.getElementById("senhaCadastro").value;
+
+        const confirmar = document.getElementById("confirmarSenha").value;
+
+        const fotoInput = document.getElementById("fotoCadastro");
+
+        if (!nome || !email || !senha) {
+          alert("Preencha todos os campos.");
+          return;
+        }
+
+        if (senha !== confirmar) {
+          alert("As senhas não coincidem.");
+          return;
+        }
+
+        const arquivo = fotoInput.files[0];
+
+        if (arquivo) {
+          const leitor = new FileReader();
+
+          leitor.onload = () => {
+            localStorage.setItem(
+              "usuario",
+              JSON.stringify({
+                nome,
+                email,
+                senha,
+                foto: leitor.result,
+                online: true,
+              }),
+            );
+
+            alert("Conta criada com sucesso!");
+            modal.classList.remove("ativo");
+          };
+
+          leitor.readAsDataURL(arquivo);
+        } else {
+          localStorage.setItem(
+            "usuario",
+            JSON.stringify({
+              nome,
+              email,
+              senha,
+              foto: "./img/perfil.jpg",
+              online: true,
+            }),
+          );
+
+          alert("Conta criada com sucesso!");
+          modal.classList.remove("ativo");
+        }
+      }
+
+      function entrar() {
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+        if (!usuario) {
+          alert("Crie uma conta primeiro.");
+          return;
+        }
+
+        window.location.href = "dashboard.html";
+      }
+      window.addEventListener("click", (e) => {
+        if (e.target === modal) {
+          modal.classList.remove("ativo");
+        }
+      });
+    </script>
+    <script src="user.js"></script>
+    <script src="global.js"></script>
+  </body>
+</html>

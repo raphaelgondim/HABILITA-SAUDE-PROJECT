@@ -60,7 +60,7 @@ body {
 .sidebar li:hover,
 .active {
   background: rgba(255, 255, 255, 0.1);
-  color: #00ED86;
+  color: #00ed86;
 }
 
 .perfil {
@@ -134,37 +134,39 @@ body {
 
 .filtros {
   display: flex;
-  gap: 16px;
+  flex-wrap: wrap;
+  gap: 15px;
 
-  margin-bottom: 30px;
+  margin-bottom: 35px;
 }
 
 .filtros input,
 .filtros select {
-  height: 52px;
+  height: 58px;
 
-  border: 1px solid #dce3ef;
+  border: none;
 
-  border-radius: 14px;
+  border-radius: 16px;
+
+  background: white;
 
   padding: 0 18px;
 
-  background: white;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+  font-size: 14px;
+
+  outline: none;
 }
 
 .filtros input {
-  width: 320px;
+  flex: 1;
+  min-width: 300px;
 }
 
 /* =========================
    GRID
 ========================= */
-
-.cursos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-  gap: 25px;
-}
 
 /* =========================
    CARD
@@ -177,7 +179,7 @@ body {
 
   overflow: hidden;
 
-  border: 1px solid #edf1f7;
+  width: 380px;
 
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
 
@@ -185,7 +187,7 @@ body {
 }
 
 .curso-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-6px);
 }
 
 .curso-top {
@@ -260,21 +262,27 @@ body {
 ========================= */
 
 .curso-info {
-  margin: 0 20px 20px;
+  margin: 15px;
 
-  background: linear-gradient(135deg, #163b97, #2d63ff);
+  background: linear-gradient(135deg, #163b97, #3568e6);
 
   color: white;
 
   border-radius: 18px;
 
-  padding: 20px;
+  padding: 18px;
 
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.curso-info div {
+  flex: 1;
 }
 
 .curso-info strong {
+  display: block;
   font-size: 22px;
 }
 
@@ -342,11 +350,20 @@ body {
 
   .topbar {
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
   }
 
-  .topbar h1 {
-    font-size: 42px;
+  .titulo-pagina {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .curso-card {
+    width: 100%;
+  }
+
+  .acoes-curso {
+    flex-direction: column;
   }
 
   .filtros {
@@ -401,28 +418,9 @@ body {
 }
 
 .cursos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
+  display: flex;
+  flex-wrap: wrap;
   gap: 25px;
-
-  margin-top: 30px;
-}
-
-.curso-card {
-  background: white;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-
-  transition: 0.3s;
-}
-
-.curso-card:hover {
-  transform: translateY(-5px);
 }
 
 .curso-card img {
@@ -432,50 +430,6 @@ body {
   object-fit: cover;
 }
 
-.curso-info {
-  padding: 20px;
-}
-
-.curso-info h3 {
-  margin-bottom: 10px;
-}
-
-.curso-info p {
-  color: #666;
-}
-
-.curso-info span {
-  display: block;
-  margin-top: 10px;
-}
-
-.curso-info strong {
-  display: block;
-  margin-top: 15px;
-
-  color: #163b97;
-
-  font-size: 20px;
-}
-
-.curso-info button {
-  width: 100%;
-
-  margin-top: 15px;
-
-  border: none;
-
-  background: #163b97;
-
-  color: white;
-
-  padding: 12px;
-
-  border-radius: 10px;
-
-  cursor: pointer;
-}
-
 .status.publicado {
   background: #dcfce7;
   color: #15803d;
@@ -483,5 +437,143 @@ body {
 
 .status.privado {
   background: #fee2e2;
+  color: #dc2626;
+}
+
+.menu-ativo {
+  color: #22c55e !important;
+  font-weight: 600;
+}
+
+.menu-ativo i {
+  color: #22c55e !important;
+}
+
+.icons a i {
+  color: white;
+}
+
+.active-icon {
+  color: #22c55e !important;
+}
+
+.foto-wrapper {
+  position: relative;
+}
+
+.online {
+  width: 12px;
+  height: 12px;
+
+  border-radius: 50%;
+
+  background: #22c55e;
+
+  border: 2px solid white;
+
+  position: absolute;
+
+  bottom: 2px;
+  right: 2px;
+}
+
+.suporte-header {
+  margin-bottom: 30px;
+}
+
+.suporte-header h2 {
+  font-size: 38px;
+  color: #1b2559;
+}
+
+.suporte-header p {
+  color: #6b7280;
+  margin-top: 8px;
+}
+
+.btn-novo-curso {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+
+  color: white;
+
+  border: none;
+
+  padding: 14px 22px;
+
+  border-radius: 14px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.btn-novo-curso:hover {
+  transform: translateY(-3px);
+}
+
+.filtros {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.filtros input,
+.filtros select {
+  height: 55px;
+  border-radius: 14px;
+  border: 1px solid #ddd;
+  padding: 0 15px;
+  background: white;
+  font-size: 14px;
+}
+
+.filtros input {
+  flex: 1;
+  min-width: 250px;
+}
+
+.acoes-curso {
+  display: flex;
+
+  gap: 10px;
+
+  padding: 0 15px 20px;
+}
+
+.acoes-curso button {
+  flex: 1;
+
+  height: 48px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.acoes-curso button:hover {
+  transform: translateY(-2px);
+}
+
+.btn-ganhos {
+  background: #163b97;
+  color: white;
+}
+
+.btn-editar {
+  background: #edf2ff;
+  color: #163b97;
+}
+
+.btn-excluir {
+  background: #ffe5e5;
   color: #dc2626;
 }

@@ -30,8 +30,8 @@
               </a>
             </li>
 
-            <li class="active">
-              <a href="./meus-cursos.html">
+            <li>
+              <a href="./meus-cursos.html" class="menu-ativo">
                 <i class="fa-solid fa-book"></i>
                 Meus Cursos
               </a>
@@ -68,11 +68,13 @@
         </div>
 
         <div class="perfil">
-          <img src="img/perfil.avif" alt="" />
-          <div>
-            <strong>Lucas Silva</strong>
-            <small>Professor</small>
+          <div class="foto-wrapper">
+            <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
+
+            <span class="online"></span>
           </div>
+
+          <span id="nomeUsuarioSidebar"></span>
         </div>
       </aside>
 
@@ -80,23 +82,38 @@
         <header class="topbar">
           <div>
             <h1>PROFESSOR</h1>
-            <p>Bem-vindo(a) ao seu painel</p>
+            <p>Acompanhe e gerencie todos os cursos cadastrados.</p>
           </div>
 
           <div class="icons">
-            <i class="fa-regular fa-circle-question"></i>
-            <i class="fa-regular fa-bell"></i>
+            <a href="suporte.html">
+              <i class="fa-regular fa-circle-question"></i>
+            </a>
+            <a href="notificacoes.html">
+              <i class="fa-regular fa-bell"
+                ><span id="badgeNotificacao"></span
+              ></i>
+            </a>
 
             <div class="user-top">
-              <img src="img/perfil.avif" alt="" />
-              <span>Lucas Silva</span>
+              <div class="foto-wrapper">
+                <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
+
+                <span class="online"></span>
+              </div>
+
+              <span id="nomeUsuarioTop"></span>
             </div>
           </div>
         </header>
 
-        <div>
-          <h1>Meus Cursos</h1>
-          <p>Gerencie seus cursos e acompanhe os resultados.</p>
+        <div class="suporte-header">
+          <div>
+            <h2>Meus Cursos</h2>
+            <p>Gerencie, acompanhe e analise seus cursos.</p>
+          </div>
+
+        
         </div>
 
         <div class="filtros">
@@ -131,5 +148,7 @@
       </div>
     </div>
     <script src="meus-cursos.js"></script>
+    <script src="user.js"></script>
+    <script src="global.js"></script>
   </body>
 </html>

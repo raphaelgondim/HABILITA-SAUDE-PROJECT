@@ -132,6 +132,21 @@ uploadBox.addEventListener("drop", (e) => {
   });
 });
 
+function criarNotificacao(titulo, descricao, tipo) {
+  const notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+  notificacoes.unshift({
+    id: Date.now(),
+    titulo,
+    descricao,
+    tipo,
+    lida: false,
+    data: new Date().toLocaleString("pt-BR"),
+  });
+
+  localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
+}
+
 // ========================
 // AUTO RASCUNHO
 // ========================
@@ -262,8 +277,11 @@ form.addEventListener("submit", (e) => {
 
   localStorage.removeItem("rascunhoCurso");
 
-  alert("Curso publicado com sucesso!");
-
+  criarNotificacao(
+    "Novo Curso Criado",
+    `O curso "${nomeCurso.value}" foi publicado com sucesso.`,
+    "curso",
+  );
   window.location.href = "meus-cursos.html";
 });
 
@@ -354,19 +372,6 @@ cardsConteudo.forEach((card) => {
 
     inputConteudo.click();
   });
-});
-
-inputConteudo.addEventListener("change", (e) => {
-  const arquivo = e.target.files[0];
-
-  if (!arquivo) return;
-
-  conteudosCurso.push({
-    tipo: tipoAtual,
-    nome: arquivo.name,
-  });
-
-  renderizarConteudos();
 });
 
 function renderizarConteudos() {

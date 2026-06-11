@@ -150,6 +150,12 @@ function renderRanking() {
   });
 }
 
+criarNotificacao(
+  "Relatório Gerado",
+  "Relatório criado com sucesso",
+  "relatorio"
+);
+
 // ========================
 
 atualizarMetricas();

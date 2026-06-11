@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Dashboard</title>
+    <title>Suporte</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -24,7 +24,7 @@
           </div>
 
           <ul>
-            <li class="active">
+            <li>
               <a href="./dashboard.html">
                 <i class="fa-solid fa-house"></i>
                 Início
@@ -69,9 +69,13 @@
         </div>
 
         <div class="perfil">
-          <img src="./img/perfil.jpg" />
+          <div class="foto-wrapper">
+            <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
 
-          <span>Lucas Silva</span>
+            <span class="online"></span>
+          </div>
+
+          <span id="nomeUsuarioSidebar"></span>
         </div>
       </aside>
 
@@ -83,80 +87,82 @@
           </div>
 
           <div class="icons">
-            <i class="fa-regular fa-circle-question"></i>
-            <i class="fa-regular fa-bell"></i>
+            <a href="suporte.html">
+              <i class="fa-regular fa-circle-question"></i>
+            </a>
+            <a href="notificacoes.html">
+              <i class="fa-regular fa-bell active-icon"></i>
+            </a>
 
             <div class="user-top">
-              <img src="./img/perfil.jpg" />
+              <div class="foto-wrapper">
+                <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
 
-              <span>Lucas Silva</span>
+                <span class="online"></span>
+              </div>
+
+              <span id="nomeUsuarioTop"></span>
             </div>
           </div>
         </header>
 
-        
+        <section class="suporte-header">
+          <h2>Notificações</h2>
+          <p>
+            Estamos aqui para ajudá-lo. Tire suas dúvidas ou abra um chamado.
+          </p>
+        </section>
 
-        <section class="cards">
-          <div class="card">
-            <h3>Meus Cursos</h3>
+        <section class="metricas-notificacao">
+          <div class="card-metrica">
+            <i class="fa-solid fa-bell"></i>
 
-            <div class="search">
-              <input type="text" placeholder="Buscar cursos..." />
-              <i class="fa-solid fa-magnifying-glass"></i>
-            </div>
-            <div id="listaCursosDashboard"></div>
-          </div>
-
-          <div class="card">
-            <h3>Evolução De Matrícula</h3>
-
-            <div class="grafico">
-              <canvas id="graficoVendas"></canvas>
+            <div>
+              <h3>Total</h3>
+              <strong id="totalNotificacoes">0</strong>
             </div>
           </div>
 
-          <div class="card">
-            <h3>Últimos Usuários</h3>
+          <div class="card-metrica">
+            <i class="fa-solid fa-circle-exclamation"></i>
 
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>João Pedro</span>
-              <small>Online</small>
+            <div>
+              <h3>Não Lidas</h3>
+              <strong id="naoLidas">0</strong>
             </div>
+          </div>
 
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Maria Fernanda</span>
-              <small>Hoje</small>
+          <div class="card-metrica">
+            <i class="fa-solid fa-check"></i>
+
+            <div>
+              <h3>Lidas</h3>
+              <strong id="lidas">0</strong>
             </div>
+          </div>
 
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Ricardo Souza</span>
-              <small>3 dias Atrás</small>
+          <div class="card-metrica">
+            <i class="fa-solid fa-clock"></i>
+
+            <div>
+              <h3>Hoje</h3>
+              <strong id="hoje">0</strong>
             </div>
           </div>
         </section>
 
-        <section class="bottom-cards">
-          <div class="ranking-card">
-            <h3>CURSOS MAIS VENDIDOS</h3>
-            <table>
-              <tbody id="rankingVendas"></tbody>
-            </table>
-          </div>
+        <div class="filtros-notificacao">
+          <button id="btnTodos">Todos</button>
+          <button id="btnNaoLidas">Não Lidas</button>
+          <button id="btnLidas">Lidas</button>
+        </div>
 
-          <div class="ranking-card">
-            <h3>CURSOS MAIS BEM AVALIADOS</h3>
-
-            <table>
-              <tbody id="rankingAvaliacoes"></tbody>
-            </table>
-          </div>
-        </section>
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="dashboard.js"></script>
+        <section id="listaNotificacoes"></section>
       </main>
     </div>
+
+    <script src="notificacoes.js"></script>
+    <script src="user.js"></script>
+    <script src="global.js"></script>
   </body>
 </html>

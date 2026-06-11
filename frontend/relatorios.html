@@ -59,8 +59,8 @@
               </a>
             </li>
 
-            <li class="active">
-              <a href="./relatorios.html">
+            <li>
+              <a href="./relatorios.html" class="menu-ativo">
                 <i class="fa-solid fa-chart-line"></i>
                 Relatórios
               </a>
@@ -69,9 +69,13 @@
         </div>
 
         <div class="perfil">
-          <img src="./img/perfil.jpg" />
+          <div class="foto-wrapper">
+            <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
 
-          <span>Lucas Silva</span>
+            <span class="online"></span>
+          </div>
+
+          <span id="nomeUsuarioSidebar"></span>
         </div>
       </aside>
 
@@ -86,13 +90,23 @@
           </div>
 
           <div class="icons">
-            <i class="fa-regular fa-circle-question"></i>
-            <i class="fa-regular fa-bell"></i>
+            <a href="suporte.html">
+              <i class="fa-regular fa-circle-question"></i>
+            </a>
+            <a href="notificacoes.html">
+              <i class="fa-regular fa-bell"
+                ><span id="badgeNotificacao"></span
+              ></i>
+            </a>
 
             <div class="user-top">
-              <img src="./img/perfil.jpg" />
+              <div class="foto-wrapper">
+                <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
 
-              <span>Lucas Silva</span>
+                <span class="online"></span>
+              </div>
+
+              <span id="nomeUsuarioTop"></span>
             </div>
           </div>
         </header>
@@ -152,6 +166,9 @@
         <section class="ranking-card">
           <h2>Cursos Mais Acessados</h2>
 
+          <div class="progresso">
+            <div class="barra"></div>
+          </div>
           <div id="rankingCursos"></div>
         </section>
 
@@ -159,5 +176,7 @@
         <script src="relatorios.js"></script>
       </main>
     </div>
+    <script src="user.js"></script>
+    <script src="global.js"></script>
   </body>
 </html>

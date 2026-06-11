@@ -81,3 +81,51 @@ button {
   cursor: pointer;
   margin-top: 10px;
 }
+
+.criar-conta {
+  margin-top: 20px;
+  text-align: center;
+  cursor: pointer;
+  color: #163b97;
+  font-weight: 600;
+}
+
+.modal-cadastro {
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0,0,0,.5);
+
+  display: none;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-cadastro.ativo {
+  display: flex;
+}
+
+.cadastro-box {
+  background: white;
+
+  width: 400px;
+  max-width: 90%;
+
+  padding: 30px;
+
+  border-radius: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 15px;
+}
+
+.cadastro-box input {
+  padding: 12px;
+
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+}

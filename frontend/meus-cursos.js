@@ -119,7 +119,7 @@ function renderCursos(lista) {
               ${
                 Number(curso.preco) === 0
                   ? "Gratuito"
-                  : `R$ ${Number(curso.preco).toLocaleString("pt-BR", {
+                  : `${Number(curso.preco).toLocaleString("pt-BR", {
                       minimumFractionDigits: 2,
                       maximumFractionDigits: 2,
                     })}`
@@ -253,7 +253,7 @@ function abrirDetalhes(curso) {
       ${
         Number(curso.preco) === 0
           ? "Gratuito"
-          : `R$ ${Number(curso.preco).toLocaleString("pt-BR", {
+          : `${Number(curso.preco).toLocaleString("pt-BR", {
               minimumFractionDigits: 2,
               maximumFractionDigits: 2,
             })}`
