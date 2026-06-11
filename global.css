@@ -19,6 +19,8 @@ body {
   padding: 25px;
 }
 
+/* SIDEBAR */
+
 .sidebar {
   width: 300px;
   background: linear-gradient(to bottom, #163b97, #2249ad);
@@ -45,6 +47,7 @@ body {
 
 .sidebar li {
   margin-bottom: 15px;
+  border-radius: 10px;
 }
 
 .sidebar li a {
@@ -56,12 +59,13 @@ body {
   font-weight: bold;
 }
 
+/* TOPO */
+
 .topbar {
   background: #24439d;
   color: white;
   margin: -25px -25px 25px -25px;
   padding: 15px 30px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -83,6 +87,8 @@ body {
   gap: 10px;
 }
 
+/* FOTO */
+
 .foto-wrapper {
   position: relative;
 }
@@ -91,7 +97,6 @@ body {
 .perfil img {
   width: 40px;
   height: 40px;
-
   border-radius: 50%;
   object-fit: cover;
 }
@@ -99,24 +104,33 @@ body {
 .online {
   width: 12px;
   height: 12px;
-
-  background: #22c55e;
-
   border-radius: 50%;
-
+  background: #22c55e;
   border: 2px solid white;
-
   position: absolute;
-  right: 2px;
   bottom: 2px;
+  right: 2px;
 }
 
-.card {
-  background: white;
+/* MENU */
 
-  border-radius: 20px;
+.menu-ativo {
+  color: #22c55e !important;
+  font-weight: 600;
+}
 
-  padding: 20px;
+.menu-ativo i {
+  color: #22c55e !important;
+}
 
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+.active-icon {
+  color: #22c55e !important;
+}
+
+/* RESPONSIVO */
+
+@media (max-width: 1000px) {
+  .sidebar {
+    display: none;
+  }
 }
