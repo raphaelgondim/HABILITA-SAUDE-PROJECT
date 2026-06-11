@@ -22,13 +22,10 @@ function atualizarMetricas() {
     0,
   );
 
-  const mediaAvaliacao =
-    cursos.length > 0
-      ? (
-          cursos.reduce((total, curso) => total + (curso.avaliacao || 0), 0) /
-          cursos.length
-        ).toFixed(1)
-      : 0;
+  const receitaTotal = cursos.reduce(
+    (total, curso) => total + (curso.alunos || 0) * (curso.preco || 0),
+    0,
+  );
 
   document.getElementById("totalInscricoes").textContent = totalInscricoes;
 
@@ -37,7 +34,11 @@ function atualizarMetricas() {
   document.getElementById("atividadesPendentes").textContent =
     atividadesPendentes;
 
-  document.getElementById("mediaAvaliacao").textContent = mediaAvaliacao;
+  document.getElementById("receitaTotal").textContent =
+    receitaTotal.toLocaleString("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    });
 }
 
 // ========================
@@ -60,16 +61,19 @@ function carregarCursosFiltro() {
 
 function criarGraficoCursos() {
   new Chart(document.getElementById("graficoCursos"), {
-    type: "bar",
+    type: "line",
 
     data: {
       labels: cursos.map((c) => c.nome),
 
       datasets: [
         {
-          label: "Alunos",
-
+          label: "Inscrições",
           data: cursos.map((c) => c.alunos || 0),
+          borderColor: "#163b97",
+          backgroundColor: "#163b97",
+          tension: 0.4,
+          fill: false,
         },
       ],
     },
@@ -82,28 +86,64 @@ function criarGraficoCursos() {
   });
 }
 
-// ========================
-// GRÁFICO STATUS
-// ========================
-
 function criarGraficoStatus() {
-  const publicados = cursos.filter((c) => c.status === "Publicado").length;
+  const concluidas = cursos.reduce((t, c) => t + (c.concluidos || 0), 0);
 
-  const privados = cursos.filter((c) => c.status === "Privado").length;
+  const pendentes = cursos.reduce(
+    (t, c) => t + (c.atividadesPendentes || 0),
+    0,
+  );
+
+  const atrasadas = Math.floor(pendentes * 0.3);
 
   new Chart(document.getElementById("graficoStatus"), {
     type: "doughnut",
 
     data: {
-      labels: ["Publicado", "Privado"],
+      labels: ["Concluídas", "Atrasadas", "Pendentes"],
 
       datasets: [
         {
-          data: [publicados, privados],
+          data: [concluidas, atrasadas, pendentes],
+
+          backgroundColor: ["#22c55e", "#f59e0b", "#163b97"],
+
+          borderWidth: 0,
         },
       ],
     },
+
+    options: {
+      responsive: true,
+
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
   });
+}
+
+// ========================
+// GRÁFICO STATUS
+// ========================
+
+function atualizarStatus() {
+  const concluidas = cursos.reduce((t, c) => t + (c.concluidos || 0), 0);
+
+  const pendentes = cursos.reduce(
+    (t, c) => t + (c.atividadesPendentes || 0),
+    0,
+  );
+
+  document.getElementById("statusConcluidas").textContent = concluidas;
+
+  document.getElementById("statusPendentes").textContent = pendentes;
+
+  document.getElementById("statusAtrasadas").textContent = Math.floor(
+    pendentes * 0.3,
+  );
 }
 
 // ========================
@@ -153,7 +193,7 @@ function renderRanking() {
 criarNotificacao(
   "Relatório Gerado",
   "Relatório criado com sucesso",
-  "relatorio"
+  "relatorio",
 );
 
 // ========================

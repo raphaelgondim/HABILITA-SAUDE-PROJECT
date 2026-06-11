@@ -16,31 +16,58 @@ function criarNotificacao(titulo, descricao, tipo) {
 }
 
 function renderizarNotificacoes(lista) {
-  const container =
-    document.getElementById("listaNotificacoes");
+  const container = document.getElementById("listaNotificacoes");
 
   container.innerHTML = "";
 
   lista.forEach((n) => {
+    let icone = "fa-bell";
+
+    if (n.tipo === "curso") {
+      icone = "fa-book";
+    }
+
+    if (n.tipo === "ticket") {
+      icone = "fa-ticket";
+    }
+
+    if (n.tipo === "relatorio") {
+      icone = "fa-trophy";
+    }
+
+    if (n.tipo === "alerta") {
+      icone = "fa-circle-exclamation";
+    }
+
     container.innerHTML += `
       <div class="notificacao-card">
 
         <div class="icone ${n.tipo}">
-          <i class="fa-solid fa-bell"></i>
+          <i class="fa-solid ${icone}"></i>
         </div>
 
         <div class="conteudo">
+
           <h3>${n.titulo}</h3>
+
           <p>${n.descricao}</p>
+
           <small>${n.data}</small>
 
           ${
             !n.lida
-              ? `<button onclick="marcarComoLida(${n.id})">
-                    Marcar como lida
-                 </button>`
+              ? `
+    <span
+      class="marcar-lida"
+      onclick="marcarComoLida(${n.id})"
+    >
+      <i class="fa-solid fa-check"></i>
+      Marcar como lida
+    </span>
+  `
               : ""
           }
+
         </div>
 
       </div>
@@ -48,65 +75,95 @@ function renderizarNotificacoes(lista) {
   });
 }
 
-function marcarComoLida(id) {
-  const notificacoes =
-    JSON.parse(localStorage.getItem("notificacoes")) || [];
+function ativarFiltro(id) {
+  document
+    .querySelectorAll(".metricas-notificacao .card-metrica")
+    .forEach((card) => card.classList.remove("ativo"));
 
-  const notificacao =
-    notificacoes.find((n) => n.id === id);
+  document.getElementById(id).classList.add("ativo");
+}
+
+document.getElementById("filtroTotal").addEventListener("click", () => {
+  ativarFiltro("filtroTotal");
+
+  renderizarNotificacoes(notificacoes);
+});
+
+document.getElementById("filtroNaoLidas").addEventListener("click", () => {
+  ativarFiltro("filtroNaoLidas");
+
+  renderizarNotificacoes(notificacoes.filter((n) => !n.lida));
+});
+
+document.getElementById("filtroLidas").addEventListener("click", () => {
+  ativarFiltro("filtroLidas");
+
+  renderizarNotificacoes(notificacoes.filter((n) => n.lida));
+});
+
+document.getElementById("filtroHoje").addEventListener("click", () => {
+  ativarFiltro("filtroHoje");
+
+  renderizarNotificacoes(
+    notificacoes.filter((n) =>
+      n.data.includes(new Date().toLocaleDateString("pt-BR")),
+    ),
+  );
+});
+
+function atualizarMetricas() {
+  const notificacoes = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+  document.getElementById("totalNotificacoes").textContent =
+    notificacoes.length;
+
+  document.getElementById("naoLidas").textContent = notificacoes.filter(
+    (n) => !n.lida,
+  ).length;
+
+  document.getElementById("lidas").textContent = notificacoes.filter(
+    (n) => n.lida,
+  ).length;
+
+  document.getElementById("hoje").textContent = notificacoes.filter((n) =>
+    n.data.includes(new Date().toLocaleDateString("pt-BR")),
+  ).length;
+}
+
+function marcarComoLida(id) {
+  const lista = JSON.parse(localStorage.getItem("notificacoes")) || [];
+
+  const notificacao = lista.find((n) => n.id === id);
 
   if (notificacao) {
     notificacao.lida = true;
   }
 
-  localStorage.setItem(
-    "notificacoes",
-    JSON.stringify(notificacoes),
-  );
+  localStorage.setItem("notificacoes", JSON.stringify(lista));
 
+  notificacoes = lista;
+
+  atualizarMetricas();
   renderizarNotificacoes(notificacoes);
 }
 
-document
-  .getElementById("btnTodos")
-  .addEventListener("click", () => {
-    renderizarNotificacoes(notificacoes);
-  });
-
-document
-  .getElementById("btnNaoLidas")
-  .addEventListener("click", () => {
-    renderizarNotificacoes(
-      notificacoes.filter((n) => !n.lida)
-    );
-  });
-
-document
-  .getElementById("btnLidas")
-  .addEventListener("click", () => {
-    renderizarNotificacoes(
-      notificacoes.filter((n) => n.lida)
-    );
-  });
-
-  const total = notificacoes.length;
-
-const naoLidas =
-  notificacoes.filter((n) => !n.lida).length;
-
-const lidas =
-  notificacoes.filter((n) => n.lida).length;
-
-const hoje =
-  notificacoes.filter((n) =>
-    n.data.includes(
-      new Date().toLocaleDateString("pt-BR")
-    )
-  ).length;
-
-document.getElementById("totalNotificacoes").textContent = total;
-document.getElementById("naoLidas").textContent = naoLidas;
-document.getElementById("lidas").textContent = lidas;
-document.getElementById("hoje").textContent = hoje;
+atualizarMetricas();
 
 renderizarNotificacoes(notificacoes);
+
+function excluirTodasNotificacoes() {
+  const confirmar = confirm("Deseja realmente excluir todas as notificações?");
+
+  if (!confirmar) return;
+
+  localStorage.removeItem("notificacoes");
+
+  notificacoes = [];
+
+  atualizarMetricas();
+  renderizarNotificacoes([]);
+}
+
+document
+  .getElementById("btnExcluirTodas")
+  .addEventListener("click", excluirTodasNotificacoes);

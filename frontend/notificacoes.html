@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Suporte</title>
+    <title>Notificações</title>
 
     <link rel="stylesheet" href="style.css" />
 
@@ -114,36 +114,32 @@
         </section>
 
         <section class="metricas-notificacao">
-          <div class="card-metrica">
+          <div class="card-metrica ativo" id="filtroTotal">
             <i class="fa-solid fa-bell"></i>
-
             <div>
               <h3>Total</h3>
               <strong id="totalNotificacoes">0</strong>
             </div>
           </div>
 
-          <div class="card-metrica">
+          <div class="card-metrica" id="filtroNaoLidas">
             <i class="fa-solid fa-circle-exclamation"></i>
-
             <div>
               <h3>Não Lidas</h3>
               <strong id="naoLidas">0</strong>
             </div>
           </div>
 
-          <div class="card-metrica">
+          <div class="card-metrica" id="filtroLidas">
             <i class="fa-solid fa-check"></i>
-
             <div>
               <h3>Lidas</h3>
               <strong id="lidas">0</strong>
             </div>
           </div>
 
-          <div class="card-metrica">
+          <div class="card-metrica" id="filtroHoje">
             <i class="fa-solid fa-clock"></i>
-
             <div>
               <h3>Hoje</h3>
               <strong id="hoje">0</strong>
@@ -152,9 +148,10 @@
         </section>
 
         <div class="filtros-notificacao">
-          <button id="btnTodos">Todos</button>
-          <button id="btnNaoLidas">Não Lidas</button>
-          <button id="btnLidas">Lidas</button>
+          <button id="btnExcluirTodas" class="btn-excluir-todas">
+            <i class="fa-solid fa-trash"></i>
+            Excluir Todas
+          </button>
         </div>
 
         <section id="listaNotificacoes"></section>
