@@ -1,15 +1,16 @@
 <!doctype html>
-<html lang="pt-BR">
+<html lang="pt-br">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meus Cursos</title>
 
-    <link rel="stylesheet" href="meus-cursos.css" />
+    <title>Perfil</title>
+
+    <link rel="stylesheet" href="style.css" />
 
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
     />
   </head>
 
@@ -19,7 +20,7 @@
         <div>
           <div class="logo-side">
             <h2>HABILITA.SAÚDE</h2>
-            <p>Plataforma de Cursos em Saúde</p>
+            <p>Plataforma De Cursos em Saúde</p>
           </div>
 
           <ul>
@@ -31,7 +32,7 @@
             </li>
 
             <li>
-              <a href="./meus-cursos.html" class="menu-ativo">
+              <a href="./meus-cursos.html">
                 <i class="fa-solid fa-book"></i>
                 Meus Cursos
               </a>
@@ -84,7 +85,7 @@
         <header class="topbar">
           <div>
             <h1>PROFESSOR</h1>
-            <p>Acompanhe e gerencie todos os cursos cadastrados.</p>
+            <p>Bem-vindo(a) ao seu painel</p>
           </div>
 
           <div class="icons">
@@ -92,9 +93,7 @@
               <i class="fa-regular fa-circle-question"></i>
             </a>
             <a href="notificacoes.html">
-              <i class="fa-regular fa-bell"
-                ><span id="badgeNotificacao"></span
-              ></i>
+              <i class="fa-regular fa-bell"></i>
             </a>
 
             <div class="user-top">
@@ -111,48 +110,23 @@
           </div>
         </header>
 
-        <div class="suporte-header">
-          <div>
-            <h2>Meus Cursos</h2>
-            <p>Gerencie, acompanhe e analise seus cursos.</p>
-          </div>
+        <section class="perfil-card">
+          <h2>Meu Perfil</h2>
 
-        
-        </div>
+          <input type="text" id="nomeUsuario" />
 
-        <div class="filtros">
-          <input id="buscaCurso" type="text" placeholder="Buscar curso..." />
+          <input type="email" id="emailUsuario" />
 
-          <select id="categoria">
-            <option value="Todas">Todas Categorias</option>
-            <option value="Urgência">Urgência</option>
-            <option value="Enfermagem">Enfermagem</option>
-            <option value="Nutrição">Nutrição</option>
-            <option value="Fisioterapia">Fisioterapia</option>
-            <option value="Saúde Mental">Saúde Mental</option>
-          </select>
+          <input type="text" id="fotoUsuario" />
 
-          <select id="filtroCarga">
-            <option value="Todas">Todas Cargas Horárias</option>
-          </select>
-
-          <select id="filtroPublico">
-            <option value="Todos">Todos os Públicos</option>
-          </select>
-        </div>
-
-        <section id="cursosGrid" class="cursos-grid"></section>
+          <button id="salvarPerfil">Salvar Alterações</button>
+        </section>
+        <section id="listaNotificacoes"></section>
       </main>
-      <div id="modalCurso" class="modal">
-        <div class="modal-content">
-          <button id="fechar">×</button>
-
-          <div id="detalhesCurso"></div>
-        </div>
-      </div>
     </div>
-    <script src="meus-cursos.js"></script>
+
     <script src="user.js"></script>
+    <script src="perfil.js"></script>
     <script src="global.js"></script>
   </body>
 </html>

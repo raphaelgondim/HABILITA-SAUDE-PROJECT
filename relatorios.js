@@ -144,6 +144,18 @@ function atualizarStatus() {
   document.getElementById("statusAtrasadas").textContent = Math.floor(
     pendentes * 0.3,
   );
+
+  atualizarMetricas();
+
+  atualizarStatus();
+
+  carregarCursosFiltro();
+
+  criarGraficoCursos();
+
+  criarGraficoStatus();
+
+  renderRanking();
 }
 
 // ========================
@@ -151,7 +163,9 @@ function atualizarStatus() {
 // ========================
 
 function renderRanking() {
-  const ranking = [...cursos].sort((a, b) => b.alunos - a.alunos).slice(0, 5);
+  const ranking = [...cursos]
+    .sort((a, b) => (b.alunos || 0) - (a.alunos || 0))
+    .slice(0, 5);
 
   const container = document.getElementById("rankingCursos");
 
@@ -160,7 +174,7 @@ function renderRanking() {
   const maior = ranking[0]?.alunos || 1;
 
   ranking.forEach((curso) => {
-    const porcentagem = (curso.alunos * 100) / maior;
+    const porcentagem = ((curso.alunos || 0) * 100) / maior;
 
     container.innerHTML += `
       <div class="ranking-item">
@@ -172,8 +186,8 @@ function renderRanking() {
           </span>
 
           <strong>
-            ${curso.alunos}
-          </strong>
+  ${curso.alunos || 0}
+</strong>
 
         </div>
 
@@ -190,11 +204,15 @@ function renderRanking() {
   });
 }
 
-criarNotificacao(
-  "Relatório Gerado",
-  "Relatório criado com sucesso",
-  "relatorio",
-);
+document.getElementById("btnRelatorio").addEventListener("click", () => {
+  criarNotificacao(
+    "Relatório Gerado",
+    "Relatório criado com sucesso",
+    "relatorio",
+  );
+
+  alert("Relatório gerado com sucesso!");
+});
 
 // ========================
 
@@ -207,3 +225,65 @@ criarGraficoCursos();
 criarGraficoStatus();
 
 renderRanking();
+
+document.getElementById("btnDownload").addEventListener("click", () => {
+  const { jsPDF } = window.jspdf;
+
+  const doc = new jsPDF();
+
+  const totalInscricoes =
+    document.getElementById("totalInscricoes").textContent;
+
+  const totalConcluidos =
+    document.getElementById("totalConcluidos").textContent;
+
+  const atividadesPendentes = document.getElementById(
+    "atividadesPendentes",
+  ).textContent;
+
+  const receita = document.getElementById("receitaTotal").textContent;
+
+  doc.setFontSize(18);
+  doc.text("Relatório Geral da Plataforma", 20, 20);
+
+  doc.setFontSize(12);
+
+  doc.text(`Total de Inscrições: ${totalInscricoes}`, 20, 40);
+
+  doc.text(`Conclusões de Curso: ${totalConcluidos}`, 20, 55);
+
+  doc.text(`Atividades Pendentes: ${atividadesPendentes}`, 20, 70);
+
+  doc.text(`Receita Gerada: ${receita}`, 20, 85);
+
+  doc.save("relatorio-geral.pdf");
+});
+
+document.getElementById("btnBaixarRanking").addEventListener("click", () => {
+  const { jsPDF } = window.jspdf;
+
+  const doc = new jsPDF();
+
+  const ranking = [...cursos]
+    .sort((a, b) => (b.alunos || 0) - (a.alunos || 0))
+    .slice(0, 5);
+
+  doc.setFontSize(18);
+  doc.text("Ranking de Cursos Mais Acessados", 20, 20);
+
+  doc.setFontSize(12);
+
+  let y = 40;
+
+  ranking.forEach((curso, index) => {
+    doc.text(
+      `${index + 1}º - ${curso.nome} (${curso.alunos || 0} alunos)`,
+      20,
+      y,
+    );
+
+    y += 15;
+  });
+
+  doc.save("ranking-cursos.pdf");
+});

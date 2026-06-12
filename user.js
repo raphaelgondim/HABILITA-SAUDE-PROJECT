@@ -17,3 +17,4 @@ if (usuario) {
 
   if (fotoTop) fotoTop.src = usuario.foto;
 }
+

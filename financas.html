@@ -67,7 +67,9 @@
 
         <div class="perfil">
           <div class="foto-wrapper">
-            <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
+            <a href="./perfil.html">
+              <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
+            </a>
 
             <span class="online"></span>
           </div>
@@ -94,7 +96,9 @@
             </a>
             <div class="user-top">
               <div class="foto-wrapper">
-                <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
+                <a href="perfil.html">
+                  <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
+                </a>
 
                 <span class="online"></span>
               </div>
@@ -205,17 +209,17 @@
 
             <div class="pagamento-info">
               <span>Banco</span>
-              <strong>Banco do Brasil</strong>
+              <strong id="bancoUsuario">Banco do Brasil</strong>
             </div>
 
             <div class="pagamento-info">
               <span>Agência</span>
-              <strong>1234-5</strong>
+              <strong id="agenciaUsuario">1234-5</strong>
             </div>
 
             <div class="pagamento-info">
               <span>Conta</span>
-              <strong>12345-6</strong>
+              <strong id="contaUsuario">12345-6</strong>
             </div>
 
             <button class="btn-editar-banco">
@@ -227,9 +231,23 @@
       </main>
     </div>
 
+    <div id="modalBanco" class="modal">
+      <div class="modal-content">
+        <h2>Editar Dados Bancários</h2>
+
+        <input type="text" id="inputBanco" placeholder="Banco" />
+
+        <input type="text" id="inputAgencia" placeholder="Agência" />
+
+        <input type="text" id="inputConta" placeholder="Conta" />
+
+        <button id="salvarBanco">Salvar</button>
+      </div>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="financas.js"></script>
     <script src="user.js"></script>
     <script src="global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   </body>
 </html>

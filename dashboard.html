@@ -70,7 +70,9 @@
 
         <div class="perfil">
           <div class="foto-wrapper">
-            <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
+            <a href="./perfil.html">
+              <img id="fotoUsuarioSidebar" src="./img/perfil.jpg" />
+            </a>
 
             <span class="online"></span>
           </div>
@@ -98,7 +100,9 @@
 
             <div class="user-top">
               <div class="foto-wrapper">
-                <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
+                <a href="perfil.html">
+                  <img id="fotoUsuarioTop" src="./img/perfil.jpg" />
+                </a>
 
                 <span class="online"></span>
               </div>
@@ -123,6 +127,18 @@
             <h3>Evolução De Matrícula</h3>
 
             <div class="grafico">
+              <div class="grafico-topo">
+                <button class="btn-ativo">Evolução de Matrícula</button>
+
+                <select>
+                  <option>Últimos 6 Meses</option>
+                  <option>Últimos 12 Meses</option>
+                </select>
+              </div>
+
+              <div class="grafico">
+                <canvas id="graficoVendas"></canvas>
+              </div>
               <canvas id="graficoVendas"></canvas>
             </div>
           </div>
@@ -130,23 +146,7 @@
           <div class="card">
             <h3>Últimos Usuários</h3>
 
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>João Pedro</span>
-              <small>Online</small>
-            </div>
-
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Maria Fernanda</span>
-              <small>Hoje</small>
-            </div>
-
-            <div class="usuario">
-              <img src="/img/perfil.avif" />
-              <span>Ricardo Souza</span>
-              <small>3 dias Atrás</small>
-            </div>
+            <div id="listaUsuariosDashboard"></div>
           </div>
         </section>
 

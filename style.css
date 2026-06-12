@@ -119,24 +119,20 @@ body {
 }
 
 .grafico {
-  width: 100%;
-  height: 250px;
+  height: 280px;
 
   margin-top: 20px;
 
-  background:
-    linear-gradient(to right, #dfe6ff 1px, transparent 1px),
-    linear-gradient(to bottom, #dfe6ff 1px, transparent 1px);
+  padding: 10px;
 
-  background-size: 50px 50px;
+  border-radius: 18px;
 
-  border-radius: 20px;
+  background: #fff;
+}
 
-  padding: 20px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.grafico canvas {
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .grafico svg {
@@ -162,7 +158,7 @@ body {
   object-fit: cover;
 }
 .curso img {
-  width: 75px;
+  width: 100px;
   height: 60px;
   border-radius: 12px;
   object-fit: cover;
@@ -2092,4 +2088,141 @@ body {
   .usuarios-card table {
     min-width: 700px;
   }
+}
+
+#listaCursosDashboard .curso {
+  background: transparent !important;
+
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid #ececec;
+}
+
+#listaCursosDashboard .curso:last-child {
+  border-bottom: none;
+}
+
+#listaCursosDashboard .curso img {
+  width: 120px;
+  height: 70px;
+
+  border-radius: 10px;
+
+  object-fit: cover;
+
+  flex-shrink: 0;
+}
+
+#ultimosUsuarios .usuario {
+  background: transparent !important;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #ececec;
+}
+
+#ultimosUsuarios .usuario:last-child {
+  border-bottom: none;
+}
+
+.grafico-topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 15px;
+}
+
+.grafico-topo button {
+  border: none;
+
+  background: #edf4ff;
+
+  color: #24439d;
+
+  padding: 8px 12px;
+
+  border-radius: 10px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.grafico-topo select {
+  border: 1px solid #ddd;
+
+  border-radius: 10px;
+
+  padding: 8px 12px;
+
+  font-size: 12px;
+}
+
+.usuario-dashboard {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #edf1f7;
+}
+
+.usuario-dashboard:last-child {
+  border-bottom: none;
+}
+
+.usuario-dashboard img {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 50%;
+
+  object-fit: cover;
+}
+
+.usuario-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.usuario-info strong {
+  font-size: 15px;
+}
+
+.usuario-info small {
+  color: #6b7280;
+}
+
+#listaCursosDashboard::-webkit-scrollbar {
+  width: 8px;
+}
+
+#listaCursosDashboard::-webkit-scrollbar-thumb {
+  background: #163b97;
+  border-radius: 20px;
+}
+
+#listaCursosDashboard::-webkit-scrollbar-track {
+  background: #edf1f7;
+}
+
+.cards .card:first-child {
+  height: 500px;
+}
+
+#listaCursosDashboard {
+  max-height: 380px;
+  overflow-y: auto;
 }

@@ -84,3 +84,80 @@ function criarNotificacao(titulo, descricao, tipo) {
 
   localStorage.setItem("notificacoes", JSON.stringify(notificacoes));
 }
+
+const btnEditarBanco = document.querySelector(".btn-editar-banco");
+const modalBanco = document.getElementById("modalBanco");
+
+const bancoUsuario = document.getElementById("bancoUsuario");
+const agenciaUsuario = document.getElementById("agenciaUsuario");
+const contaUsuario = document.getElementById("contaUsuario");
+
+const inputBanco = document.getElementById("inputBanco");
+const inputAgencia = document.getElementById("inputAgencia");
+const inputConta = document.getElementById("inputConta");
+
+const salvarBanco = document.getElementById("salvarBanco");
+
+function carregarDadosBancarios() {
+  const dados = JSON.parse(localStorage.getItem("dadosBancarios"));
+
+  if (!dados) return;
+
+  bancoUsuario.textContent = dados.banco;
+  agenciaUsuario.textContent = dados.agencia;
+  contaUsuario.textContent = dados.conta;
+}
+
+carregarDadosBancarios();
+
+btnEditarBanco.addEventListener("click", () => {
+  modalBanco.style.display = "flex";
+
+  inputBanco.value = bancoUsuario.textContent;
+  inputAgencia.value = agenciaUsuario.textContent;
+  inputConta.value = contaUsuario.textContent;
+});
+
+salvarBanco.addEventListener("click", () => {
+  const dados = {
+    banco: inputBanco.value,
+    agencia: inputAgencia.value,
+    conta: inputConta.value,
+  };
+
+  localStorage.setItem("dadosBancarios", JSON.stringify(dados));
+
+  carregarDadosBancarios();
+
+  modalBanco.style.display = "none";
+
+  alert("Dados bancários atualizados!");
+});
+
+
+document
+  .getElementById("btnRelatorio")
+  .addEventListener("click", () => {
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    doc.text("Relatório Financeiro", 20, 20);
+
+    doc.text(
+      "Faturamento: " +
+      document.getElementById("faturamentoBruto").textContent,
+      20,
+      40
+    );
+
+    doc.text(
+      "Receita Líquida: " +
+      document.getElementById("receitaLiquida").textContent,
+      20,
+      60
+    );
+
+    doc.save("relatorio-financeiro.pdf");
+  });
